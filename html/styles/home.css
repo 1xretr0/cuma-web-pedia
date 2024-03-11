@@ -1,0 +1,206 @@
+/* MAIN FRAME */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slogan {
+    width: 800px;
+}
+
+.slogan h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.slogan h1 span {
+    color: #1f6ecc;
+}
+
+/* SEARCH BAR */
+.outer-search-bar {
+    background-color: #154074;
+    border-radius: 60px;
+    width: 680px;
+    height: 85px;
+    margin: 34px 0 34px 0;
+}
+
+.outer-search-bar select {
+    position: relative;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+    background-color: #154074;
+    border: none;
+}
+
+.inner-search-bar {
+    background-color: white;
+    border-radius: 40px;
+    height: 65px;
+    width: 459px;
+    border-width: 1.5px;
+    position: relative;
+    top: 15%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+}
+
+.inner-search-bar form {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+}
+
+.inner-search-bar input {
+    border-style: none;
+    font-size: 25px;
+    width: 385px;
+    height: 50px;
+}
+
+.inner-search-bar input:focus {
+    outline: none;
+}
+
+.inner-search-bar button {
+    border-style: none;
+    background: none;
+    height: 50px;
+}
+
+.inner-search-bar button:hover {
+    cursor: pointer;
+}
+
+/* CAROUSEL */
+button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.carousel {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.carousel-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease-in;
+}
+
+.carousel-view .item-list {
+    width: 85vw;
+    padding: 50px 10px;
+    display: flex;
+    gap: 48px;
+    scroll-behavior: smooth;
+    transition: all 0.25s ease-in;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.item-list::-webkit-scrollbar {
+    display: none;
+}
+
+.prev-btn {
+    background: none;
+    cursor: pointer;
+}
+
+.next-btn {
+    cursor: pointer;
+}
+
+.item {
+    scroll-snap-align: center;
+    background-color: #1f6ecc;
+    border-radius: 8px;
+}
+
+/* DISCOVER */
+.discover {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.discover a {
+    text-decoration: none;
+    color: black;
+}
+
+.discover h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.about {
+    position: relative;
+    width: 90%;
+	margin-bottom: 50px;
+}
+
+.about .about-title {
+    position: absolute;
+    left: 59%;
+    top: 0%;
+    font-size: 30px;
+    text-align: right;
+}
+
+.about .about-title h1 {
+    margin: 0;
+}
+
+.about .about-text {
+    position: absolute;
+    left: 64%;
+    top: 20%;
+	font-size: 15px;
+    text-align: right;
+    width: 400px;
+}
+
+.about-2 {
+    position: relative;
+    width: 90%;
+}
+
+.about-2 .about-image {
+	position: absolute;
+	left: 50%;
+}
+
+.about-2 .about-title {
+    position: absolute;
+	font-size: 30px;
+}
+
+.about-2 .about-title h1 {
+    margin: 0;
+}
+
+.about-2 .about-title p {
+	font-size: 15px;
+	width: 400px;
+}
