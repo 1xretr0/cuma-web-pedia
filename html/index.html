@@ -19,12 +19,12 @@
     <body>
 		<!-- NAVBAR -->
         <nav class="topnav open-sans-regular">
-			<div class="logo">
+			<div id="navbar-logo" class="logo">
 				<h1 class="be-vietnam-pro-regular">CUMA</h1>
 			</div>
             <a data-item-id="about" class="nav-item" href="#about" onclick="makeNavbarItemBold('about')">Acerca de</a>
-            <a data-item-id="index" class="nav-item" href="#index" onclick="makeNavbarItemBold('index')">Índice</a>
-            <a data-item-id="resources" class="nav-item" href="#resources" onclick="makeNavbarItemBold('resources')">Recursos</a>
+            <a data-item-id="index" class="nav-item" href="index/">Índice</a>
+            <a data-item-id="resources" class="nav-item" href="resources/">Recursos</a>
 			<a class="nav-button" type="button" href="login/">
 				<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i>
 				Entrar
@@ -81,26 +81,42 @@
 			</div>
 			<br>
 			<!-- ABOUT -->
-			<div class="about">
+			<div id="about" class="about">
+				<div class="about-text">
+					<h1 class="poiret-one-regular">¿Qué es CUMA?</h1>
+					<p class="open-sans-regular">
+						CUMA es el proyecto dedicado a la creación de una enciclopedia estructurada de costumbres, creencias e interpretaciones culturales en materia de salud.<br><br>Buscamos abordar las complejidades de la relación entre la salud y la diversidad cultural, ofreciendo un espacio donde investigadores, profesionales de la salud y la comunidad puedan explorar y comprender mejor las diferencias culturales en el ámbito de la atención médica.
+					</p>
+				</div>
 				<div>
 					<img src="https://via.placeholder.com/572x395">
 				</div>
-				<div class="about-title">
-					<h1 class="poiret-one-regular">¿Qué es CUMA?</h1>
-				</div>
-				<div class="about-text">
-					<p class="open-sans-regular">CUMA es el proyecto dedicado a la creación de una enciclopedia estructurada de costumbres, creencias e interpretaciones culturales en materia de salud.<br><br>Buscamos abordar las complejidades de la relación entre la salud y la diversidad cultural, ofreciendo un espacio donde investigadores, profesionales de la salud y la comunidad puedan explorar y comprender mejor las diferencias culturales en el ámbito de la atención médica.</p>
-				</div>
 			</div>
-			<div class="about-2">
-				<div class="about-title">
-					<h1 class="poiret-one-regular">Enciclopedia</h1>
-					<p class="open-sans-regular">En esta página web podrás acceder a un compendio de conceptos, términos y recursos como artículos, libros, ensayos y anotaciones médicas que se agrupan por épocas, grupos y hechos culturales.</p>
-				</div>
+			<div class="about">
 				<div class="about-image">
 					<img src="https://via.placeholder.com/572x395">
 				</div>
+				<div class="about-text" style="text-align: right;">
+					<h1 class="poiret-one-regular">Enciclopedia</h1>
+					<p class="open-sans-regular">
+						En esta página web podrás acceder a un compendio de conceptos, términos y recursos como artículos, libros, ensayos y anotaciones médicas que se agrupan por épocas, grupos y hechos culturales.
+					</p>
+				</div>
 			</div>
 		</main>
+		<footer class="open-sans-regular">
+			<div>
+				<p>Síguenos <i class="fa-brands fa-github"></i> <i class="fa-brands fa-instagram"></i></p>
+			</div>
+			<div>
+				<p>Puebla, México. <i class="fa-solid fa-location-dot"></i></p>
+			</div>
+			<div>
+				<p>CUMA 2024. Todos los derechos reservados.</p>
+			</div>
+			<div>
+				<p>retr0 <i class="fa-brands fa-github"></i></p>
+			</div>
+		</footer>
     </body>
 </html>

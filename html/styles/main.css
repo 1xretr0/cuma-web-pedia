@@ -122,3 +122,29 @@
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+/* MAIN FRAME */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FOOTER */
+footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0 -8px -8px -8px;
+	padding: 0 20px;
+	background-color: #154074;
+}
+
+footer div p {
+	color: white;
+}
+
+footer div p i {
+	color: black;
+}

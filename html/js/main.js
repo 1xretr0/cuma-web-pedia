@@ -13,3 +13,15 @@ function makeNavbarItemBold(itemId) {
 		item.style.fontWeight = "400";
 	}
 }
+
+(function(window, document, undefined){
+	window.onload = init;
+
+	function init() {
+		const logoAnchor = document.getElementById("navbar-logo");
+
+        logoAnchor.addEventListener("click", () => {
+            window.location.href("/");
+        });
+	}
+})(window, document, undefined);

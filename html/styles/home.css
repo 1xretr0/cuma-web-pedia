@@ -1,11 +1,4 @@
-/* MAIN FRAME */
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
+/* SLOGAN */
 .slogan {
     width: 800px;
 }
@@ -141,7 +134,7 @@ button {
 /* DISCOVER */
 .discover {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .discover a {
@@ -154,53 +147,28 @@ button {
     font-size: 30px;
 }
 
+/* ABOUT */
 .about {
-    position: relative;
-    width: 90%;
-	margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0 30px;
 }
 
-.about .about-title {
-    position: absolute;
-    left: 59%;
-    top: 0%;
-    font-size: 30px;
-    text-align: right;
+.about .about-image {
+	width: 50%;
 }
 
-.about .about-title h1 {
-    margin: 0;
+.about div image {
+	width: 100%;
 }
 
 .about .about-text {
-    position: absolute;
-    left: 64%;
-    top: 20%;
-	font-size: 15px;
-    text-align: right;
-    width: 400px;
+	width: 40%;
+	align-self: center;
 }
 
-.about-2 {
-    position: relative;
-    width: 90%;
-}
-
-.about-2 .about-image {
-	position: absolute;
-	left: 50%;
-}
-
-.about-2 .about-title {
-    position: absolute;
-	font-size: 30px;
-}
-
-.about-2 .about-title h1 {
-    margin: 0;
-}
-
-.about-2 .about-title p {
-	font-size: 15px;
-	width: 400px;
+.about .about-text h1 {
+	font-size: 50px;
 }
