@@ -59,16 +59,22 @@
     font-style: normal;
 }
 
+/* BODY */
+body {
+	margin: 0;
+}
+
+/* NAVBAR */
 .topnav {
     background-color: #D0EBFF;
     overflow: hidden;
-    margin-top: -8px;
-    margin-right: -8px;
-    margin-left: -8px;
     height: 90px;
     align-items: center;
     display: flex;
     flex-direction: row;
+	position: sticky;
+	top: 0;
+	width: 100%;
 }
 
 /* NAVBAR ITEMS */
@@ -136,7 +142,6 @@ footer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin: 0 -8px -8px -8px;
 	padding: 0 20px;
 	background-color: #154074;
 }
