@@ -1,19 +1,19 @@
-/* SLOGAN */
-.slogan {
-    width: 800px;
+body {
+	overflow: hidden;
 }
 
+/* MAIN FRAME */
+main {
+    display: grid;
+	grid-template-columns: 250px auto;
+	column-gap: 10px;
+}
+
+/* SLOGAN */
 .slogan h1 {
     text-align: center;
     font-size: 50px;
 	color: #1F6ECC;
-}
-
-/* center content */
-.center {
-	display: grid;
-	width: 100%;
-	gap: 10px;
 }
 
 /* FOOTER */
@@ -25,23 +25,93 @@ footer {
 	width: 100%;
 }
 
+.content {
+	margin-right: 10px;
+}
+
+.content table {
+	width: 100%;
+	height: 60%;
+	display: block;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.content table tbody {
+	display: table;
+  	width: 100%;
+}
+
+.content table tbody tr td {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+.table-row-text {
+	width: 60%;
+}
+
+.table-row-text h3 {
+	font-size: 20pt;
+}
+
+.content table tbody tr button {
+	border-radius: 20px;
+	border: none;
+	width: 70px;
+	height: 36px;
+	text-align: center;
+	color: white;
+}
+
+/* TABLE BUTTON TAGS */
+.table-row-btn-area {
+	background-color: #155D73;
+}
+
+.table-row-btn-group {
+	background-color: #6409AB;
+}
+
+.table-row-btn-year {
+	background-color: #152173;
+}
+
+.table-row-btn-status {
+	color: black;
+	background-color: #155D73;
+}
+
 /* ACCORDEON */
 #container {
-    margin: 0 auto;
-    width: 50%;
+	height: 825px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: #F0F0F0;
+	border-right-style: solid;
+	border-right-width: 2px;
 }
+
+#accordion div {
+	border-bottom: 2px;
+	border-bottom-style: solid;
+}
+
 #accordion input {
 	display: none;
 }
+
 #accordion label {
-	background: #eee;
+	font-size: 10pt;
+	background-color: none;
 	border-radius: .25em;
 	cursor: pointer;
 	display: block;
 	margin-bottom: .125em;
-	padding: .25em 1em;
+	padding: 1em 1em;
 	z-index: 20;
 }
+
 #accordion label:hover {
 	background: #ccc;
 }
@@ -53,17 +123,25 @@ footer {
 	color: white;
 	margin-bottom: 0;
 }
+
 #accordion article {
 	background: #f7f7f7;
 	height:0px;
 	overflow:hidden;
 	z-index:10;
 }
-#accordion article p {
-	padding: 1em;
+
+#accordion article ul {
+	list-style: none;
 }
+
+#accordion article ul li {
+	padding-bottom: 10px;
+}
+
 #accordion input:checked article {
 }
+
 #accordion input:checked ~ article {
 	border-bottom-left-radius: .25em;
 	border-bottom-right-radius: .25em;

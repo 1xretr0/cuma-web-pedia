@@ -1,3 +1,11 @@
+/* MAIN FRAME */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* SLOGAN */
 .slogan {
     width: 800px;

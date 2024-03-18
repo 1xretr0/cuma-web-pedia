@@ -129,14 +129,6 @@ body {
     margin-bottom: 0px;
 }
 
-/* MAIN FRAME */
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 /* FOOTER */
 footer {
 	display: flex;
