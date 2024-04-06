@@ -87,6 +87,15 @@ footer {
 	background-color: #A5C8F2;
 }
 
+.table-row-btn-lang {
+	color: black !important;
+	background-color: #A5C8F2;
+}
+
+.table-row-btn-type {
+	color: black !important;
+}
+
 /* ACCORDEON */
 #container {
 	height: 825px;

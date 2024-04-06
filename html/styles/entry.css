@@ -112,6 +112,12 @@ main {
 	margin-bottom: .125em;
 }
 
+#accordion #contents_label {
+	text-align: center;
+	cursor: default;
+	color: gray;
+}
+
 /* FOOTER */
 footer {
 	padding: 0;
