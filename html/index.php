@@ -2,6 +2,9 @@
 <?php
 session_start();
 
+// DEBUG
+// print_r($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +34,7 @@ session_start();
             <a data-item-id="resources" class="nav-item" href="resources/">Recursos</a>
 			<a class="nav-button" type="button" href="<?= isset($_SESSION['loggedUserId']) ? 'php/login.php?logout=1' : 'login/' ?>">
 				<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i>
-				<?= $_SESSION['loggedUserId'] ?? 'Entrar' ?>
+				<?= $_SESSION['loggedUserFirstname'] ?? 'Entrar' ?>
 			</a>
         </nav>
 		<main>
@@ -41,8 +44,8 @@ session_start();
 			<!-- SEARCH BAR -->
 			<div class="outer-search-bar">
 				<select name="filter" form="search-form" class="open-sans-bold">
-					<option value="" selected>Todo</option>
-					<option value="concepts">Fundamentos</option>
+					<!-- <option value="" selected>Todo</option> -->
+					<option value="concepts" selected>Fundamentos</option>
 					<option value="resources">Recursos</option>
 				</select>
 				<div class="inner-search-bar open-sans-regular">
