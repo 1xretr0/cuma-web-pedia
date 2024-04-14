@@ -91,7 +91,8 @@ class MySQLDAO {
 	public function executeSelect(
 		string $tableName,
 		?array $fields = null,
-		?array $filters = null
+		?array $filters = null,
+		bool $assoc = false
 	): array | bool | null {
 		$conn = $this->getConnection();
 
@@ -131,7 +132,10 @@ class MySQLDAO {
 				$result = $conn->query($query);
 			}
 
-			return $result->num_rows > 0 ? $result->fetch_assoc() : null;
+			if ($assoc)
+				return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
+			else
+				return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_NUM) : null;
 		}
 		catch (Exception $e) {
 			return false;
@@ -165,7 +169,6 @@ class MySQLDAO {
 		$valuesString .= ');';
 
 		$query .= $valuesString;
-		return $query;
 		try {
 			$stmt = $conn->prepare($query);
 			$stmt->execute(array_values($values));
