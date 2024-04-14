@@ -1,21 +1,25 @@
 <?php
 
-include_once 'db/MySQLDAO.php';
-
+require_once('middleware/main.php');
 session_start();
 
 function isUserLogged() {
-	return boolval($_SESSION['loggedUserId']);
+	return isset($_SESSION['loggedUserId']);
 }
 
-function getUsernameByUserId(int $userId) {
-	$mysqlManager = new MySQLDAO();
-	return $mysqlManager->executeSelect(
-		$mysqlManager->USERS_TABLE,
-		[$mysqlManager->USERS_FIRSTNAME],
-		[$mysqlManager->USERS_ID => $userId]
-	);
-}
+if (
+	$_SERVER['REQUEST_METHOD'] == 'POST' &&
+	$_SERVER['HTTP_REFERER'] == 'http://localhost/login/' &&
+	isset($_POST['username']) && isset($_POST['password'])
+) {
+	$userId = getUserIdByCredentials($_POST['username'], $_POST['password']);
+	if (!$userId) {
+		$_SESSION['loginError'] = 'Usuario y/o contraseña incorrectos. Intente de nuevo.';
+		header('Location: /login/');
+		exit;
+	}
 
-print_r(getUsernameByUserId(1));
-die;
+	$_SESSION['loggedUserId'] = $userId['id_usuario'];
+	header('Location: /');
+	exit;
+}

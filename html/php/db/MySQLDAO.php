@@ -1,7 +1,5 @@
 <?php
 
-// require_once '';
-
 class MySQLDAO {
 	// private $conn;
 
@@ -16,25 +14,11 @@ class MySQLDAO {
 	public $USERS_USERNAME 	= 'correo_usuario';
 	public $USERS_PASSWORD 	= 'contrasena_usuario';
 	public $USERS_ADMIN 	= 'administrador';
-
 	// WIP
 
 	public function __construct() {
-
 		// PHP_EXTENSION_DIR
 		$this->loadDotenv();
-
-		// print_r($_ENV);
-		// die;
-
-		// $this->conn = new mysqli(
-		// 	$_ENV['host'],
-		// 	$_ENV['username'],
-		// 	$_ENV['password'],
-		// 	$_ENV['database']
-		// );
-		// if ($this->conn->connect_error)
-		// 	throw new ErrorException("DB Connection Failed!");
 	}
 
 	private function loadDotenv(): bool {
@@ -100,7 +84,11 @@ class MySQLDAO {
 		return $conn;
 	}
 
-	public function executeSelect(string $tableName, ?array $fields = null, ?array $filters = null) {
+	public function executeSelect(
+		string $tableName,
+		?array $fields = null,
+		?array $filters = null
+	): array | bool | null {
 		$conn = $this->getConnection();
 
 		$selectClause = $fields ? implode(',', $fields) : '*';

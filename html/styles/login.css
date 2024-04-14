@@ -60,6 +60,10 @@
 	background-color: #ffffff;
 }
 
+.center .form-2 .form-error {
+	color: red;
+}
+
 .center form {
 	position: absolute;
 	top: 50%;
@@ -89,10 +93,6 @@
 
 .center form button:hover {
 	background-color: #195094;
-}
-
-.center form p {
-	margin-top: 30px;
 }
 
 .center form a {
