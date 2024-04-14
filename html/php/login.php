@@ -3,10 +3,7 @@
 require_once('middleware/main.php');
 session_start();
 
-function isUserLogged() {
-	return isset($_SESSION['loggedUserId']);
-}
-
+// MANAGE INCOMING LOGIN REQUESTS
 if (
 	$_SERVER['REQUEST_METHOD'] == 'POST' &&
 	$_SERVER['HTTP_REFERER'] == 'http://localhost/login/' &&
@@ -19,7 +16,33 @@ if (
 		exit;
 	}
 
+	session_unset();
 	$_SESSION['loggedUserId'] = $userId['id_usuario'];
+	header('Location: /');
+	exit;
+}
+// MANAGE INCOMING SIGNUP REQUESTS
+elseif (
+	$_SERVER['REQUEST_METHOD'] == 'POST' &&
+	$_SERVER['HTTP_REFERER'] == 'http://localhost/login/' &&
+	isset($_POST['firstnames']) &&
+	isset($_POST['lastnames']) &&
+	isset($_POST['email']) &&
+	isset($_POST['password'])
+) {
+	$userId = createNewUser(
+		$_POST['firstnames'],
+		$_POST['lastnames'],
+		$_POST['email'],
+		$_POST['password']
+	);
+}
+// MANAGE INCOMING LOGOUT REQUESTS
+elseif (
+	$_SERVER['REQUEST_METHOD'] == 'GET' &&
+	isset($_GET['logout'])
+) {
+	unset($_SESSION['loggedUserId']);
 	header('Location: /');
 	exit;
 }

@@ -2,11 +2,12 @@
 <?php
 
 include_once(realpath(dirname(__FILE__) . "/..") . '/php/login.php');
+session_start();
 // DEBUG
 print_r($_SESSION);
 print_r($_REQUEST);
 
-if (isUserLogged()) {
+if (isset($_SESSION['loggedUserId'])) {
 	header('Location: /');
 	exit;
 }

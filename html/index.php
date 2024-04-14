@@ -1,4 +1,8 @@
 <!-- HOME -->
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,9 +29,9 @@
             <a data-item-id="about" class="nav-item" href="#about">Acerca de</a>
             <a data-item-id="index" class="nav-item" href="index/">Índice</a>
             <a data-item-id="resources" class="nav-item" href="resources/">Recursos</a>
-			<a class="nav-button" type="button" href="login/">
+			<a class="nav-button" type="button" href="<?= isset($_SESSION['loggedUserId']) ? 'php/login.php?logout=1' : 'login/' ?>">
 				<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i>
-				Entrar
+				<?= $_SESSION['loggedUserId'] ?? 'Entrar' ?>
 			</a>
         </nav>
 		<main>

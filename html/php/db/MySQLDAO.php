@@ -11,7 +11,7 @@ class MySQLDAO {
 	public $USERS_ID 		= 'id_usuario';
 	public $USERS_FIRSTNAME = 'nombres_personales_usuario';
 	public $USERS_LASTNAMES = 'apellidos_personales_usuario';
-	public $USERS_USERNAME 	= 'correo_usuario';
+	public $USERS_EMAIL 	= 'correo_usuario';
 	public $USERS_PASSWORD 	= 'contrasena_usuario';
 	public $USERS_ADMIN 	= 'administrador';
 	// WIP
@@ -22,6 +22,10 @@ class MySQLDAO {
 	}
 
 	private function loadDotenv(): bool {
+		// BREAK PROCESS IF ENV ALREADY LOADED
+		if (isset($_ENV['database']))
+			return true;
+
 		$env_file_path = realpath(__DIR__ . "/.env");
 
 		if (!is_file($env_file_path)) {
@@ -137,4 +141,48 @@ class MySQLDAO {
 		}
 	}
 
+	public function executeInsert(
+		string $tableName,
+		array $values,
+		bool $fields = false,
+		bool $lastId = false
+	): string | bool | null {
+		$conn = $this->getConnection();
+
+		$query = "INSERT INTO $this->DB_NAME.$tableName ";
+
+		if ($fields) {
+			$query .= '(' . implode(', ', array_keys($values)) . ') ';
+		}
+
+		$valuesString = '';
+		foreach ($values as $value) {
+			if (!$valuesString)
+				$valuesString .= 'VALUES (?';
+			else
+				$valuesString .= ',?';
+		}
+		$valuesString .= ');';
+
+		$query .= $valuesString;
+		return $query;
+		try {
+			$stmt = $conn->prepare($query);
+			$stmt->execute(array_values($values));
+
+			if ($lastId)
+				return $conn->insert_id ?? false;
+
+			if (!isset($result) || $result === -1)
+				return false;
+			elseif ($result === 0)
+				return null;
+			else
+				return $result;
+		} catch (Exception $e) {
+			return false;
+		} finally {
+			$conn->close();
+		}
+	}
 }
