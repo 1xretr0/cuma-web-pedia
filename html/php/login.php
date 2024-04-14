@@ -1,6 +1,6 @@
 <?php
 
-require_once('middleware/main.php');
+require_once('middleware/users.php');
 session_start();
 
 // MANAGE INCOMING SIGNUP REQUESTS

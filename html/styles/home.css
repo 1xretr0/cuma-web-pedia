@@ -104,6 +104,7 @@ button {
     align-items: center;
     gap: 10px;
     transition: all 0.25s ease-in;
+	text-align: center;
 }
 
 .carousel-view .item-list {
@@ -117,6 +118,10 @@ button {
     scrollbar-width: none; /* Firefox */
     overflow: auto;
     scroll-snap-type: x mandatory;
+}
+
+.item-list span p {
+	font-size: 20px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

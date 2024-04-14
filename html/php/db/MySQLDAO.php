@@ -4,17 +4,33 @@ class MySQLDAO {
 	// private $conn;
 
 	// DB ENTITIES CONSTANTS
-	public $DB_NAME 		= 'cuma';
-
+	public $DB_NAME 			= 'cuma';
 	// users table
-	public $USERS_TABLE 	= 'cm_usuarios';
-	public $USERS_ID 		= 'id_usuario';
-	public $USERS_FIRSTNAME = 'nombres_personales_usuario';
-	public $USERS_LASTNAMES = 'apellidos_personales_usuario';
-	public $USERS_EMAIL 	= 'correo_usuario';
-	public $USERS_PASSWORD 	= 'contrasena_usuario';
-	public $USERS_ADMIN 	= 'administrador';
-	// WIP
+	public $USERS_TABLE 		= 'cm_usuarios';
+	public $USERS_ID 			= 'id_usuario';
+	public $USERS_FIRSTNAME 	= 'nombres_personales_usuario';
+	public $USERS_LASTNAMES 	= 'apellidos_personales_usuario';
+	public $USERS_EMAIL 		= 'correo_usuario';
+	public $USERS_PASSWORD 		= 'contrasena_usuario';
+	public $USERS_ADMIN 		= 'administrador';
+	// concepts table
+	public $CONCEPTS_TABLE 		= 'cm_fundamentos_sanitarios';
+	public $CONCEPTS_ID 		= 'id_fundamento';
+	public $CONCEPTS_NAME 		= 'nombre_fundamento';
+	public $CONCEPTS_DESC 		= 'descripcion_fundamento';
+	public $CONCEPTS_IMG 		= 'imagen';
+	// resources table
+	public $RESOURCES_TABLE 	= 'cm_recursos';
+	public $RESOURCES_ID 		= 'id_recurso';
+	public $RESOURCES_TITLE 	= 'titulo_recurso';
+	public $RESOURCES_DESC 		= 'descripcion_recurso';
+	public $RESOURCES_CONTENT 	= 'contenido_recurso';
+	public $RESOURCES_IMG 		= 'imagen';
+	public $RESOURCES_URL 		= 'url_recurso';
+	public $RESOURCES_TYPE 		= 'id_tipo_recurso';
+	public $RESOURCES_LANG 		= 'idioma';
+	public $RESOURCES_DATE 		= 'fecha_recurso';
+	public $RESOURCES_PUB_DATE 	= 'fecha_publicacion';
 
 	public function __construct() {
 		// PHP_EXTENSION_DIR
@@ -141,6 +157,31 @@ class MySQLDAO {
 			return false;
 		}
 		finally {
+			$conn->close();
+		}
+	}
+
+	public function executeRawSelect(
+		string $query,
+		bool $assoc = false,
+		?array $params = null
+	) : array | bool | null {
+		$conn = $this->getConnection();
+		try {
+			if ($params) {
+				$stmt = $conn->prepare($query);
+				$stmt->execute(array_values($params));
+				$result = $stmt->get_result();
+			} else
+				$result = $conn->query($query);
+
+			if ($assoc)
+				return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
+			else
+				return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_NUM) : null;
+		} catch (Exception $e) {
+			return false;
+		} finally {
 			$conn->close();
 		}
 	}
