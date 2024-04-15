@@ -91,10 +91,10 @@ class MySQLDAO {
 
 	private function getConnection() {
 		$conn = new mysqli(
-			$_ENV['host'],
-			$_ENV['username'],
-			$_ENV['password'],
-			$_ENV['database']
+			$_ENV['cm_host'],
+			$_ENV['cm_username'],
+			$_ENV['cm_password'],
+			$_ENV['cm_database']
 		);
 		if ($conn->connect_error) {
 			throw new ErrorException("DB Connection Failed!");
