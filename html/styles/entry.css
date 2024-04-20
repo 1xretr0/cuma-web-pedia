@@ -4,9 +4,10 @@ body {
 
 /* MAIN FRAME */
 main {
+	height: 55rem;
     display: grid;
 	grid-template-columns: 250px auto 330px;
-	column-gap: 10px;
+	/* column-gap: 10px; */
 }
 
 /* CONTENT */
@@ -40,12 +41,9 @@ main {
 
 /* ACCORDEON */
 #container {
-	height: 825px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	background-color: #F0F0F0;
-	border-right-style: solid;
-	border-right-width: 2px;
 }
 
 #accordion div {
