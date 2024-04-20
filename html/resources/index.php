@@ -4,7 +4,7 @@ session_start();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 
 <head>
 	<meta charset="UTF-8" />
@@ -29,8 +29,9 @@ session_start();
 		<a data-item-id="home" class="nav-item" href="../">Inicio</a>
 		<a data-item-id="index" class="nav-item" href="../index/">Índice</a>
 		<a data-item-id="resources" class="nav-item" href="../resources/" style="font-weight: 700;">Recursos</a>
-		<a class="nav-button" type="button" href="<?= isset($_SESSION['loggedUserId']) ? '/php/login.php?logout=1' : '../login/' ?>">
-			<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i>
+		<?= isset($_SESSION['admin']) && $_SESSION['admin'] ? '<a data-item-id="admin" class="nav-item" href="../admin/">Admin</a>' : '' ?>
+		<a class="nav-button" type="button" href="<?= isset($_SESSION['loggedUserId']) ? '../php/login.php?logout=1' : '../login/' ?>">
+			<?= isset($_SESSION['loggedUserId']) ? '<i class="fa-solid fa-right-from-bracket"></i> ' : '<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i> ' ?>
 			<?= $_SESSION['loggedUserFirstname'] ?? 'Entrar' ?>
 		</a>
 	</nav>

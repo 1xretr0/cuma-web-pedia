@@ -45,7 +45,7 @@ if (isset($_SESSION['loggedUserId'])) {
 			<div class="form-2">
 				<form method="post" action="/php/login.php">
 					<input name="username" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="50" required>
-					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="16" required>
+					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="8" required>
 					<?=
 						isset($_SESSION['loginError']) ?
 						"<p class='form-error open-sans-bold'>" . $_SESSION['loginError'] . "</p>"
@@ -76,10 +76,10 @@ if (isset($_SESSION['loggedUserId'])) {
 			</div>
 			<div class="form-2">
 				<form method="post" action="/php/login.php">
-					<input name="firstnames" class="open-sans-regular" placeholder="Nombre" type="text" maxlength="50" required>
+					<input name="firstnames" class="open-sans-regular" placeholder="Nombre" type="text" maxlength="30" required>
 					<input name="lastnames" class="open-sans-regular" placeholder="Apellidos" type="text" maxlength="50" required>
-					<input name="email" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="50" required>
-					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="16" required>
+					<input name="email" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="30" required>
+					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="8" required>
 					<button class="open-sans-bold" type="submit">Enviar</button>
 					<div>
 						<p class="open-sans-regular" style="margin-top: 30px;">

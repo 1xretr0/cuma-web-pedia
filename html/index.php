@@ -4,18 +4,20 @@ include_once('php/middleware/resources.php');
 session_start();
 
 // DEBUG
-// print_r($_SESSION);
+print_r($_SESSION);
+print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- main stylesheet-->
-	<link rel="stylesheet" href="styles/main.css"/>
+	<link rel="stylesheet" href="styles/main.css" />
 	<!-- home stylesheet -->
-	<link rel="stylesheet" href="styles/home.css"/>
+	<link rel="stylesheet" href="styles/home.css" />
 	<!-- main script -->
 	<script src="js/main.js"></script>
 	<!-- home script -->
@@ -24,6 +26,7 @@ session_start();
 	<script src="https://kit.fontawesome.com/974e5c1fbe.js" crossorigin="anonymous"></script>
 	<title>Inicio | CUMA</title>
 </head>
+
 <body>
 	<!-- NAVBAR -->
 	<nav class="topnav open-sans-regular">
@@ -33,8 +36,9 @@ session_start();
 		<a data-item-id="about" class="nav-item" href="#about">Acerca de</a>
 		<a data-item-id="index" class="nav-item" href="index/">Índice</a>
 		<a data-item-id="resources" class="nav-item" href="resources/">Recursos</a>
+		<?= isset($_SESSION['admin']) && $_SESSION['admin'] ? '<a data-item-id="admin" class="nav-item" href="admin/">Admin</a>' : '' ?>
 		<a class="nav-button" type="button" href="<?= isset($_SESSION['loggedUserId']) ? 'php/login.php?logout=1' : 'login/' ?>">
-			<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i>
+			<?= isset($_SESSION['loggedUserId']) ? '<i class="fa-solid fa-right-from-bracket"></i> ' : '<i class="fa-solid fa-user" style="color: #ffffff;padding-right: 15px;"></i> ' ?>
 			<?= $_SESSION['loggedUserFirstname'] ?? 'Entrar' ?>
 		</a>
 	</nav>
@@ -66,13 +70,13 @@ session_start();
 				</button>
 				<div id="item-list" class="item-list">
 					<?php
-						$data = getHomeCarrouselData();
-						// print_r($data);
-						foreach ($data as $item) {
-							$item = (object) $item;
-							$image = $item->image ? "<img id='item' class='item' src='img/$item->image'/>" : '';
+					$data = getHomeCarrouselData();
+					// print_r($data);
+					foreach ($data as $item) {
+						$item = (object) $item;
+						$image = $item->image ? "<img id='item' class='item' src='img/$item->image'/>" : '';
 
-							echo "
+						echo "
 								<a href='entry/?id=$item->id&ty=$item->type'>
 									<span>
 										$image
@@ -80,18 +84,18 @@ session_start();
 									</span>
 								</a>
 							";
-						}
+					}
 					?>
 					<span>
-						<img id="item" class="item" src="img/305x205.png"/>
+						<img id="item" class="item" src="img/305x205.png" />
 						<p class="open-sans-bold">xdxdxdxd</p>
 					</span>
 					<span>
-						<img id="item" class="item" src="img/305x205.png"/>
+						<img id="item" class="item" src="img/305x205.png" />
 						<p class="open-sans-bold">xdxdxdxd</p>
 					</span>
 					<span>
-						<img id="item" class="item" src="img/305x205.png"/>
+						<img id="item" class="item" src="img/305x205.png" />
 						<p class="open-sans-bold">xdxdxdxd</p>
 					</span>
 				</div>
@@ -149,4 +153,5 @@ session_start();
 		</div>
 	</footer>
 </body>
+
 </html>

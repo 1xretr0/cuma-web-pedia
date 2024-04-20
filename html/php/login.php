@@ -55,6 +55,7 @@ elseif (
 	session_unset();
 	$_SESSION['loggedUserId'] = $userData[0]['id_usuario'];
 	$_SESSION['loggedUserFirstname'] = $userData[0]['nombres_personales_usuario'];
+	$_SESSION['admin'] = $userData[0]['administrador'];
 	header('Location: /');
 	exit;
 }

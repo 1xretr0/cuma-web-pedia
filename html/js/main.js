@@ -21,7 +21,7 @@ function makeNavbarItemBold(itemId) {
 		const logoAnchor = document.getElementById("navbar-logo");
 
         logoAnchor.addEventListener("click", () => {
-            window.location.href = "/";
+            window.location.href = "../";
         });
 	}
 })(window, document, undefined);
