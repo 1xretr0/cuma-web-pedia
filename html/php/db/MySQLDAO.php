@@ -194,7 +194,7 @@ class MySQLDAO {
 	): string | bool | null {
 		$conn = $this->getConnection();
 
-		$query = "INSERT INTO $this->DB_NAME.$tableName ";
+		$query = "INSERT INTO $tableName ";
 
 		if ($fields) {
 			$query .= '(' . implode(', ', array_keys($values)) . ') ';

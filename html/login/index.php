@@ -8,7 +8,7 @@ session_start();
 // print_r($_REQUEST);
 
 if (isset($_SESSION['loggedUserId'])) {
-	header('Location: /');
+	header('Location: ../');
 	exit;
 }
 ?>
@@ -43,7 +43,7 @@ if (isset($_SESSION['loggedUserId'])) {
 				</div>
 			</div>
 			<div class="form-2">
-				<form method="post" action="/php/login.php">
+				<form method="post" action="../php/login.php">
 					<input name="username" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="50" required>
 					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="8" required>
 					<?=
@@ -75,11 +75,11 @@ if (isset($_SESSION['loggedUserId'])) {
 				</div>
 			</div>
 			<div class="form-2">
-				<form method="post" action="/php/login.php">
-					<input name="firstnames" class="open-sans-regular" placeholder="Nombre" type="text" maxlength="30" required>
+				<form method="post" action="../php/login.php">
+					<input name="firstnames" class="open-sans-regular" placeholder="Nombre" type="text" maxlength="40" required>
 					<input name="lastnames" class="open-sans-regular" placeholder="Apellidos" type="text" maxlength="50" required>
-					<input name="email" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="30" required>
-					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="8" required>
+					<input name="email" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="40" required>
+					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" minlength="8" maxlength="8" required>
 					<button class="open-sans-bold" type="submit">Enviar</button>
 					<div>
 						<p class="open-sans-regular" style="margin-top: 30px;">
