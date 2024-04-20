@@ -4,9 +4,10 @@ body {
 
 /* MAIN FRAME */
 main {
+	height: 55rem;
     display: grid;
-	grid-template-columns: 250px auto 330px;
-	column-gap: 10px;
+	grid-template-columns: 250px auto;
+	/* column-gap: 10px; */
 }
 
 /* SLOGAN */
@@ -32,6 +33,32 @@ main {
   	overflow-y: auto;
 }
 
+.content form {
+	text-align: center;
+}
+
+.content form input[type=text], input[type=email], input[type=password] {
+	width: 240px;
+	height: 45px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	font-size: 15px;
+}
+
+.content form button {
+	width: 256px;
+	height: 51px;
+	border-radius: 5px;
+	color: white;
+	background-color: #154074;
+	font-size: 20px;
+}
+
+.content form button:hover {
+	background-color: #195094;
+}
+
 /* DETAILS */
 .details {
 	background-color: #F0F0F0;
@@ -47,12 +74,9 @@ main {
 
 /* ACCORDEON */
 #container {
-	height: 825px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	background-color: #F0F0F0;
-	border-right-style: solid;
-	border-right-width: 2px;
 }
 
 #accordion div {

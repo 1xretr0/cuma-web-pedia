@@ -1,5 +1,7 @@
 <?php
 session_start();
+print_r($_SESSION);
+print_r($_REQUEST);
 
 if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 	header('Location: ../');
@@ -42,7 +44,7 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 		</a>
 	</nav>
 	<main>
-		<div>
+		<div style="background-color: #F0F0F0; border-right-color: black; border-right-style: solid; border-right-width: 2px;">
 			<!-- ACCORDEON -->
 			<div id="container">
 				<section id="accordion">
@@ -51,11 +53,22 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 						<label for="check-1" class="open-sans-bold">USUARIOS</label>
 						<article class="open-sans-regular">
 							<ul>
-								<li id="create_user">
+								<li id="create_user_li">
 									Crear usuario
 								</li>
-								<li id="modify_user">
-									Modificar usuario
+								<li>
+									Modificar usuarios
+								</li>
+							</ul>
+						</article>
+					</div>
+					<div>
+						<input type="checkbox" id="check-2" />
+						<label for="check-2" class="open-sans-bold">RECURSOS</label>
+						<article class="open-sans-regular">
+							<ul>
+								<li>
+									Modificar recursos
 								</li>
 							</ul>
 						</article>
@@ -68,19 +81,22 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 			<div class="slogan">
 				<h1 class="poiret-one-regular">Escoge alguna opción del menu lateral...</h1>
 			</div>
-		</div>
-		<!-- DETAILS PANEL -->
-		<div class="details">
-			<img src="../img/330x250.png">
-			<div>
-				<h3 class="open-sans-bold">Área</h3>
-				<p class="open-sans-light">Nombre del área</p>
-				<h3 class="open-sans-bold">Grupo Cultural</h3>
-				<p class="open-sans-light">Nombre del grupo cultural</p>
-				<h3 class="open-sans-bold">Época</h3>
-				<p class="open-sans-light">Fecha o nombre de la época</p>
-				<h3 class="open-sans-bold">Estado Migratorio</h3>
-				<p class="open-sans-light">Nombre del estado migratorio</p>
+			<h2 id="create_user_h2" class="open-sans-bold" style="display: none;">Crear nuevo usuario</h2>
+			<div id="create_user_form" style="display: none;">
+				<form method="post" action="../php/admin.php">
+					<input name="firstnames" class="open-sans-regular" placeholder="Nombre" type="text" maxlength="40" required>
+					<br>
+					<input name="lastnames" class="open-sans-regular" placeholder="Apellidos" type="text" maxlength="50" required>
+					<br>
+					<input name="email" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="40" required>
+					<br>
+					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" minlength="8" maxlength="8" required>
+					<br>
+					<label for="admin_box" class="open-sans-regular">¿Es administrador?</label>
+					<input name="admin" id="admin_box" type="checkbox" value="1">
+					<br>
+					<button class="open-sans-bold" type="submit">Enviar</button>
+				</form>
 			</div>
 		</div>
 	</main>
