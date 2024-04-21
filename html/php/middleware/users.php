@@ -27,6 +27,16 @@ function getUserDataByCredentials(string $username, string $password): array | b
 	return $mysqlManager->executeRawSelect($query, true);
 }
 
+function getAllUsers() {
+	$mysqlManager = new MySQLDAO();
+	return $mysqlManager->executeSelect(
+		$mysqlManager->USERS_TABLE,
+		null,
+		null,
+		true
+	);
+}
+
 function createNewUser(
 	string $firstnames,
 	string $lastnames,
@@ -53,5 +63,34 @@ function createNewUser(
 		],
 		true,
 		true
+	);
+}
+
+function updateUserById(
+	string $userId,
+	string $firstnames,
+	string $lastnames,
+	string $email,
+	string $password,
+	?string $admin = null
+) {
+	$firstnames = filter_var($firstnames, FILTER_SANITIZE_STRING);
+	$lastnames = filter_var($lastnames, FILTER_SANITIZE_STRING);
+	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+	$password = filter_var($password, FILTER_SANITIZE_STRING);
+
+	$admin = $admin === "1" ? 1 : 0;
+
+	$mysqlManager = new MySQLDAO();
+	return $mysqlManager->executeUpdate(
+		$mysqlManager->USERS_TABLE,
+		[
+			$mysqlManager->USERS_FIRSTNAME 	=> $firstnames,
+			$mysqlManager->USERS_LASTNAMES 	=> $lastnames,
+			$mysqlManager->USERS_EMAIL 		=> $email,
+			$mysqlManager->USERS_PASSWORD 	=> md5($password),
+			$mysqlManager->USERS_ADMIN 		=> $admin
+		],
+		[$mysqlManager->USERS_ID => $userId]
 	);
 }

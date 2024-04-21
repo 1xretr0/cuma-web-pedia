@@ -41,3 +41,27 @@ if (
 	header('Location: ../admin/');
 	exit;
 }
+elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$entityBody = json_decode(file_get_contents('php://input'));
+	if (!isset($entityBody)) {
+		echo '{"error": true, "message": "Input json decode error"}';
+		exit;
+	}
+
+	$result = updateUserById(
+		$entityBody->userId,
+		$entityBody->firstnames,
+		$entityBody->lastnames,
+		$entityBody->email,
+		$entityBody->password,
+		$entityBody->admin
+	);
+	if (!$result) {
+		echo '{"error": true, "message": "Failed to update record"}';
+		exit;
+	}
+
+	// echo '{"error": false, "message": "' . $result . '"}';
+	echo '{"error": false, "message": "Successfull update"}';
+	exit;
+}

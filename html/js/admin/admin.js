@@ -6,13 +6,21 @@
 
 		// CREATE NEW USER
 		createUserBtn = document.getElementById('create_user_li');
-		createUserBtn.addEventListener("click", () => {
+		createUserBtn.addEventListener('click', () => {
 			console.log('click on create user li');
 
 			document.querySelector('.slogan').style.display = 'none';
 
 			document.getElementById('create_user_h2').style.display = 'block';
 			document.getElementById('create_user_form').style.display = 'block';
+		});
+
+		// MODIFY USERS
+		modifyUsersBtn = document.getElementById('modify_users_li');
+		modifyUsersBtn.addEventListener('click', () => {
+			console.log("click on modify users li");
+
+			document.location.href = './usersmod.php';
 		});
     }
 })(window, document, undefined);

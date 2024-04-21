@@ -118,35 +118,35 @@ class MySQLDAO {
 		if ($filters) {
 			foreach ($filters as $key => $value) {
 				$whereClause = $whereClause ?
-					$whereClause .= "AND $key = ? "
+					$whereClause .= "AND $key = '$value' "
 				:
-					$whereClause .= "WHERE $key = ? "
+					$whereClause .= "WHERE $key = '$value' "
 				;
 			}
 		}
 
-		$query = "SELECT $selectClause FROM $this->DB_NAME.$tableName $whereClause;";
-		// return $query;
-		// die;
+		$query = "SELECT $selectClause FROM $tableName $whereClause;";
+
 		try {
-			if ($filters) {
-				$stmt = $conn->prepare($query);
+			// if ($filters) {
+			// 	$stmt = $conn->prepare($query);
 
-				// $paramTypes = '';
-				// foreach ($filters as $value) {
-				// 	if (gettype($value) === 'integer')
-				// 		$paramTypes .= 'i';
-				// 	else
-				// 		$paramTypes .= 's';
-				// }
+			// 	// $paramTypes = '';
+			// 	// foreach ($filters as $value) {
+			// 	// 	if (gettype($value) === 'integer')
+			// 	// 		$paramTypes .= 'i';
+			// 	// 	else
+			// 	// 		$paramTypes .= 's';
+			// 	// }
 
-				// $stmt->bind_param($paramTypes, array_values($filters));
-				$stmt->execute(array_values($filters));
-				$result = $stmt->get_result();
-			}
-			else {
-				$result = $conn->query($query);
-			}
+			// 	// $stmt->bind_param($paramTypes, array_values($filters));
+			// 	$stmt->execute(array_values($filters));
+			// 	$result = $stmt->get_result();
+			// }
+			// else {
+			// 	$result = $conn->query($query);
+			// }
+			$result = $conn->query($query);
 
 			if ($assoc)
 				return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
@@ -191,7 +191,7 @@ class MySQLDAO {
 		array $values,
 		bool $fields = false,
 		bool $lastId = false
-	): string | bool | null {
+	): int | string | bool | null {
 		$conn = $this->getConnection();
 
 		$query = "INSERT INTO $tableName ";
@@ -201,18 +201,23 @@ class MySQLDAO {
 		}
 
 		$valuesString = '';
+		// foreach ($values as $value) {
+		// 	if (!$valuesString)
+		// 		$valuesString .= 'VALUES (?';
+		// 	else
+		// 		$valuesString .= ',?';
+		// }
 		foreach ($values as $value) {
 			if (!$valuesString)
-				$valuesString .= 'VALUES (?';
+			$valuesString .= "VALUES ('$value'";
 			else
-				$valuesString .= ',?';
+			$valuesString .= ",'$value'";
 		}
 		$valuesString .= ');';
 
 		$query .= $valuesString;
 		try {
-			$stmt = $conn->prepare($query);
-			$stmt->execute(array_values($values));
+			$result = $conn->query($query);
 
 			if ($lastId)
 				return $conn->insert_id ?? false;
@@ -224,6 +229,60 @@ class MySQLDAO {
 			else
 				return $result;
 		} catch (Exception $e) {
+			return false;
+		} finally {
+			$conn->close();
+		}
+	}
+
+	public function executeUpdate(
+		string $tableName,
+		array $values,
+		?array $filters = null,
+	) {
+		$conn = $this->getConnection();
+
+		$valuesString = '';
+		foreach ($values as $key => $value) {
+			if (gettype($value) != 'integer')
+				$value = "'$value'";
+
+			if (!$valuesString)
+				$valuesString .= "$key = $value";
+			else
+				$valuesString .= ", $key = $value";
+		}
+
+		$whereClause = '';
+		if ($filters) {
+			foreach ($filters as $key => $value) {
+				if (gettype($value) != 'integer')
+					$value = "'$value'";
+
+				$whereClause = $whereClause ?
+					$whereClause .= "AND $key = $value "
+				:
+					$whereClause .= "WHERE $key = $value "
+				;
+			}
+		}
+
+		$query = "UPDATE $tableName SET $valuesString $whereClause;";
+		// return $query;
+		try {
+			$conn->begin_transaction();
+			$result = $conn->query($query);
+
+			if (!isset($result) || !$result) {
+				$conn->rollback();
+				return false;
+			}
+
+			$conn->commit();
+			return true;
+		}
+		catch (Exception $e) {
+			$conn->rollback();
 			return false;
 		} finally {
 			$conn->close();

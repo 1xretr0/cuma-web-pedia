@@ -18,11 +18,11 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 	<!-- main stylesheet-->
 	<link rel="stylesheet" href="../styles/main.css" />
 	<!-- home stylesheet -->
-	<link rel="stylesheet" href="../styles/admin/admin.css" />
+	<link rel="stylesheet" href="../styles/admin/usersmod.css" />
 	<!-- main script -->
 	<script src="../js/main.js"></script>
 	<!-- entry script -->
-	<script src="../js/admin/admin.js"></script>
+	<script src="../js/admin/usersmod.js"></script>
 	<!-- font awesome icons -->
 	<script src="https://kit.fontawesome.com/974e5c1fbe.js" crossorigin="anonymous"></script>
 	<title>Admin | CUMA</title>
@@ -63,7 +63,7 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 						</article>
 					</div>
 					<div>
-						<input type="checkbox" id="check-2" checked/>
+						<input type="checkbox" id="check-2" />
 						<label for="check-2" class="open-sans-bold">RECURSOS</label>
 						<article class="open-sans-regular">
 							<ul>
@@ -78,26 +78,47 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 		</div>
 		<!-- CONTENT -->
 		<div class="content">
-			<div class="slogan">
-				<h1 class="poiret-one-regular">Escoge alguna opción del menu lateral...</h1>
-			</div>
-			<h2 id="create_user_h2" class="open-sans-bold" style="display: none;">Crear nuevo usuario</h2>
-			<div id="create_user_form" style="display: none;">
-				<form method="post" action="../php/admin.php">
-					<input name="firstnames" class="open-sans-regular" placeholder="Nombre" type="text" maxlength="40" required>
-					<br>
-					<input name="lastnames" class="open-sans-regular" placeholder="Apellidos" type="text" maxlength="50" required>
-					<br>
-					<input name="email" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="40" required>
-					<br>
-					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" minlength="8" maxlength="8" required>
-					<br>
-					<label for="admin_box" class="open-sans-regular">¿Es administrador?</label>
-					<input name="admin" id="admin_box" type="checkbox" value="1">
-					<br>
-					<button class="open-sans-bold" type="submit">Enviar</button>
-				</form>
-			</div>
+			<h2 class="open-sans-bold">Modificar usuarios</h2>
+			<?php
+			require_once('../php/middleware/users.php');
+			$usersData = getAllUsers();
+			if ($usersData) {
+			?>
+			<table>
+				<thead class="open-sans-bold">
+					<!-- <th>ID</th> -->
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Correo</th>
+					<th>Contraseña</th>
+					<th>Admin</th>
+					<th><i class="fa-solid fa-ellipsis-vertical"></i></th>
+					<!-- <th>Eliminar</th> -->
+				</thead>
+				<tbody class="open-sans-regular">
+					<?php
+					foreach ($usersData as $user) {
+						$user = (object) $user;
+
+						echo "
+							<tr>
+								<td id='firstnames'>$user->nombres_personales_usuario</td>
+								<td id='lastnames'>$user->apellidos_personales_usuario</td>
+								<td id='email'>$user->correo_usuario</td>
+								<td id='password'>$user->contrasena_usuario</td>
+								<td id='admin'>$user->administrador</td>
+								<td id='options_td' colspan='2'>
+									<i id='mod_user_$user->id_usuario' class='fa-solid fa-pen-to-square edit-button'></i> <i id='del_user_$user->id_usuario' class='fa-solid fa-trash' style='color: red;'></i>
+								</td>
+							</tr>
+						";
+					}
+					?>
+				</tbody>
+			</table>
+			<?php
+			}
+			?>
 		</div>
 	</main>
 </body>
