@@ -2,13 +2,13 @@
 
 require_once(realpath(dirname(__FILE__) . "/..") . '/db/MySQLDAO.php');
 
-function getUsernameByUserId(int $userId) : array | bool | null {
+function getUsernameByUserId(int $userId) {
 	$mysqlManager = new MySQLDAO();
 	$query = "SELECT $mysqlManager->USERS_FIRSTNAME FROM $mysqlManager->USERS_TABLE WHERE $mysqlManager->USERS_ID = $userId";
 	return $mysqlManager->executeRawSelect($query);
 }
 
-function getUserDataByCredentials(string $username, string $password): array | bool | null {
+function getUserDataByCredentials(string $username, string $password) {
 	$username = filter_var($username, FILTER_SANITIZE_EMAIL);
 	// CIFRADO MD5
 	$password = md5(filter_var($password, FILTER_SANITIZE_STRING));
@@ -43,7 +43,7 @@ function createNewUser(
 	string $email,
 	string $password,
 	?string $admin = null
-): int | bool | null {
+) {
 	$firstnames = filter_var($firstnames, FILTER_SANITIZE_STRING);
 	$lastnames = filter_var($lastnames, FILTER_SANITIZE_STRING);
 	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -91,6 +91,16 @@ function updateUserById(
 			$mysqlManager->USERS_PASSWORD 	=> md5($password),
 			$mysqlManager->USERS_ADMIN 		=> $admin
 		],
+		[$mysqlManager->USERS_ID => $userId]
+	);
+}
+
+function deleteUserById(
+	string $userId
+) {
+	$mysqlManager = new MySQLDAO();
+	return $mysqlManager->executeDelete(
+		$mysqlManager->USERS_TABLE,
 		[$mysqlManager->USERS_ID => $userId]
 	);
 }

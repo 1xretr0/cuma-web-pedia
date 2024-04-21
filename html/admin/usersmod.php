@@ -108,7 +108,7 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 								<td id='password'>$user->contrasena_usuario</td>
 								<td id='admin'>$user->administrador</td>
 								<td id='options_td' colspan='2'>
-									<i id='mod_user_$user->id_usuario' class='fa-solid fa-pen-to-square edit-button'></i> <i id='del_user_$user->id_usuario' class='fa-solid fa-trash' style='color: red;'></i>
+									<i id='mod_user_$user->id_usuario' class='fa-solid fa-pen-to-square edit-button'></i> <i id='del_user_$user->id_usuario' class='fa-solid fa-trash delete-button' style='color: red;'></i>
 								</td>
 							</tr>
 						";
