@@ -45,7 +45,7 @@ if (isset($_SESSION['loggedUserId'])) {
 			<div class="form-2">
 				<form method="post" action="../php/login.php">
 					<input name="username" class="open-sans-regular" placeholder="Correo electrónico" type="email" maxlength="50" required>
-					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" maxlength="8" required>
+					<input name="password" class="open-sans-regular" placeholder="Contraseña" type="password" minlength="8" maxlength="8" required>
 					<?=
 						isset($_SESSION['loginError']) ?
 						"<p class='form-error open-sans-bold'>" . $_SESSION['loginError'] . "</p>"
