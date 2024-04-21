@@ -24,14 +24,9 @@ if (
 		$_POST['password'],
 		$_POST['admin'] ?? null
 	);
+	// print_r($userId);
+	// die;
 	if (!$userId) {
-		$_SESSION['adminError'] = 'Error al crear usuario nuevo.';
-		header('Location: ../admin/');
-		exit;
-	}
-
-	$userFirstname = getUsernameByUserId($userId);
-	if (!$userFirstname) {
 		$_SESSION['adminError'] = 'Error al crear usuario nuevo.';
 		header('Location: ../admin/');
 		exit;
@@ -63,5 +58,19 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// echo '{"error": false, "message": "' . $result . '"}';
 	echo '{"error": false, "message": "Successfull update"}';
+	exit;
+}
+elseif (
+	$_SERVER['REQUEST_METHOD'] == 'DELETE' &&
+	isset($_GET['userId'])
+) {
+	$result = deleteUserById($_GET['userId']);
+	echo $result ?
+		'{"error": false, "message": "Successfull delete"}'
+		// '{"error": false, "message": "' . $result . '"}'
+	:
+		'{"error": true, "message": "Failed to delete!"}'
+	;
+
 	exit;
 }

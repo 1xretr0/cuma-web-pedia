@@ -109,7 +109,7 @@ class MySQLDAO {
 		?array $fields = null,
 		?array $filters = null,
 		bool $assoc = false
-	): array | bool | null {
+	) {
 		$conn = $this->getConnection();
 
 		$selectClause = $fields ? implode(',', $fields) : '*';
@@ -165,7 +165,7 @@ class MySQLDAO {
 		string $query,
 		bool $assoc = false,
 		?array $params = null
-	) : array | bool | null {
+	) {
 		$conn = $this->getConnection();
 		try {
 			if ($params) {
@@ -191,7 +191,7 @@ class MySQLDAO {
 		array $values,
 		bool $fields = false,
 		bool $lastId = false
-	): int | string | bool | null {
+	) {
 		$conn = $this->getConnection();
 
 		$query = "INSERT INTO $tableName ";
@@ -201,21 +201,19 @@ class MySQLDAO {
 		}
 
 		$valuesString = '';
-		// foreach ($values as $value) {
-		// 	if (!$valuesString)
-		// 		$valuesString .= 'VALUES (?';
-		// 	else
-		// 		$valuesString .= ',?';
-		// }
 		foreach ($values as $value) {
+			if (gettype($value) != 'integer')
+				$value = "'$value'";
+
 			if (!$valuesString)
-			$valuesString .= "VALUES ('$value'";
+				$valuesString .= "VALUES ($value";
 			else
-			$valuesString .= ",'$value'";
+				$valuesString .= ",$value";
 		}
 		$valuesString .= ');';
 
 		$query .= $valuesString;
+		// return $query;
 		try {
 			$result = $conn->query($query);
 
@@ -282,6 +280,46 @@ class MySQLDAO {
 			return true;
 		}
 		catch (Exception $e) {
+			$conn->rollback();
+			return false;
+		} finally {
+			$conn->close();
+		}
+	}
+
+	public function executeDelete(
+		string $tableName,
+		array $filters
+	) {
+		$conn = $this->getConnection();
+
+		$whereClause = '';
+		if ($filters) {
+			foreach ($filters as $key => $value) {
+				if (gettype($value) != 'integer')
+				$value = "'$value'";
+
+				$whereClause = $whereClause ?
+					$whereClause .= "AND $key = $value "
+					:
+					$whereClause .= "$key = $value ";
+			}
+		}
+
+		$query = "DELETE FROM $tableName WHERE $whereClause;";
+		// return $query;
+		try {
+			$conn->begin_transaction();
+			$result = $conn->query($query);
+
+			if (!isset($result) || !$result) {
+				$conn->rollback();
+				return false;
+			}
+
+			$conn->commit();
+			return true;
+		} catch (Exception $e) {
 			$conn->rollback();
 			return false;
 		} finally {
