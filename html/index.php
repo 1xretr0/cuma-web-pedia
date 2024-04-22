@@ -4,8 +4,8 @@ include_once('php/middleware/resources.php');
 session_start();
 
 // DEBUG
-print_r($_SESSION);
-print_r($_REQUEST);
+// print_r($_SESSION);
+// print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +54,10 @@ print_r($_REQUEST);
 			</select>
 			<div class="inner-search-bar open-sans-regular">
 				<form id="search-form" action="./php/home.php" method="post">
-					<input type="search" placeholder="<?php if(isset($_SESSION['searchError'])){ echo $_SESSION['searchError']; unset($_SESSION['searchError']);} else echo 'Busca aquí...'; ?>" name="query" required>
+					<input type="search" placeholder="<?php if (isset($_SESSION['searchError'])) {
+															echo $_SESSION['searchError'];
+															unset($_SESSION['searchError']);
+														} else echo 'Busca aquí...'; ?>" name="query" required>
 					<button type="submit"><i class="fa-solid fa-magnifying-glass" style="font-size: 30px; color: black;"></i></button>
 				</form>
 			</div>
@@ -87,16 +90,21 @@ print_r($_REQUEST);
 					?>
 					<span>
 						<img id="item" class="item" src="img/305x205.png" />
-						<p class="open-sans-bold">xdxdxdxd</p>
+						<p class="open-sans-bold">¿Por qué no puedo dormir?</p>
 					</span>
 					<span>
 						<img id="item" class="item" src="img/305x205.png" />
-						<p class="open-sans-bold">xdxdxdxd</p>
+						<p class="open-sans-bold">Inmunidad de rebaño</p>
 					</span>
 					<span>
 						<img id="item" class="item" src="img/305x205.png" />
-						<p class="open-sans-bold">xdxdxdxd</p>
+						<p class="open-sans-bold">Estrés y salud</p>
 					</span>
+					<a href='#'>
+						<span>
+							<p class='open-sans-bold'>El sistema endocrino</p>
+						</span>
+					</a>
 				</div>
 				<button id="next-btn" class="next-btn">
 					<svg viewBox="0 0 512 512" width="20" title="chevron-circle-right">

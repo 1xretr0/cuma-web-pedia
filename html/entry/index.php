@@ -5,8 +5,8 @@ require_once('../php/middleware/concepts.php');
 require_once('../php/middleware/resources.php');
 session_start();
 
-print_r($_SESSION);
-print_r($_REQUEST);
+// print_r($_SESSION);
+// print_r($_REQUEST);
 // die;
 
 if (!isset($_GET['id']) || !isset($_GET['ty'])) {

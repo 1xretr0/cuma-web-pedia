@@ -1,8 +1,8 @@
 <!-- INDEX PAGE -->
 <?php
 session_start();
-print_r($_SESSION);
-print_r($_REQUEST);
+// print_r($_SESSION);
+// print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>
@@ -17,6 +17,7 @@ print_r($_REQUEST);
 	<link rel="stylesheet" href="../styles/index.css" />
 	<!-- main script -->
 	<script src="../js/main.js"></script>
+	<script src="../js/index.js"></script>
 	<!-- font awesome icons -->
 	<script src="https://kit.fontawesome.com/974e5c1fbe.js" crossorigin="anonymous"></script>
 	<title>Índice | CUMA</title>
@@ -118,16 +119,16 @@ print_r($_REQUEST);
 			<?php
 			if (isset($_SESSION['searchResults'])) {
 			?>
-			<h2 class="open-sans-bold">Resultados de la búsqueda</h2>
-			<table>
-				<?php
-				foreach ($_SESSION['searchResults'] as $result) {
-					$result = (object) $result;
+				<h2 class="open-sans-bold">Resultados de la búsqueda <?= isset($_SESSION['admin']) ? "<button id='new_button'>Crear nuevo</button>" : "" ?></h2>
+				<table>
+					<?php
+					foreach ($_SESSION['searchResults'] as $result) {
+						$result = (object) $result;
 
-					$result->nombre = mb_substr($result->nombre, 0, 50) . '...';
-					$result->descripcion = mb_substr($result->descripcion, 0, 70) . '...';
+						$result->nombre = mb_substr($result->nombre, 0, 50) . '...';
+						$result->descripcion = mb_substr($result->descripcion, 0, 70) . '...';
 
-					echo "
+						echo "
 						<tr>
 							<td class='table-row-text'>
 								<a href='../entry/?id=$result->id_uam&ty=concept'>
@@ -151,152 +152,151 @@ print_r($_REQUEST);
 							</td>
 						</tr>
 					";
-				}
-				unset($_SESSION['searchResults']);
-				?>
-			</table>
+					}
+					unset($_SESSION['searchResults']);
+					?>
+				</table>
 			<?php
-			}
-			else {
+			} else {
 			?>
-			<div class="slogan">
-				<h1 class="poiret-one-regular">Quizás te pueda interesar...</h1>
-			</div>
-			<h2 class="open-sans-bold">Entradas recientes</h2>
-			<table>
-				<tr>
-					<td class="table-row-text">
-						<a href="../entry/?id=0&ty=concept">
-							<div>
-								<h3 class="open-sans-regular">Título</h3>
-								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-status">Estado</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-row-text">
-						<a href="../entry/?id=0&ty=concept">
-							<div>
-								<h3 class="open-sans-regular">Título</h3>
-								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-status">Estado</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-row-text">
-						<a href="../entry/?id=0&ty=concept">
-							<div>
-								<h3 class="open-sans-regular">Título</h3>
-								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-status">Estado</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-row-text">
-						<a href="../entry/?id=0&ty=concept">
-							<div>
-								<h3 class="open-sans-regular">Título</h3>
-								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-status">Estado</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-row-text">
-						<a href="../entry/?id=0&ty=concept">
-							<div>
-								<h3 class="open-sans-regular">Título</h3>
-								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-status">Estado</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-row-text">
-						<a href="../entry/?id=0&ty=concept">
-							<div>
-								<h3 class="open-sans-regular">Título</h3>
-								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-status">Estado</button>
-					</td>
-				</tr>
-			</table>
+				<div class="slogan">
+					<h1 class="poiret-one-regular">Quizás te pueda interesar...</h1>
+				</div>
+				<h2 class="open-sans-bold">Entradas recientes <?= isset($_SESSION['admin']) ? "<button id='new_button'>Crear nuevo</button>" : "" ?></h2>
+				<table>
+					<tr>
+						<td class="table-row-text">
+							<a href="../entry/?id=0&ty=concept">
+								<div>
+									<h3 class="open-sans-regular">Título</h3>
+									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-area">Area</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-group">Grupo</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-year">Año</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-status">Estado</button>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-row-text">
+							<a href="../entry/?id=0&ty=concept">
+								<div>
+									<h3 class="open-sans-regular">Título</h3>
+									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-area">Area</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-group">Grupo</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-year">Año</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-status">Estado</button>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-row-text">
+							<a href="../entry/?id=0&ty=concept">
+								<div>
+									<h3 class="open-sans-regular">Título</h3>
+									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-area">Area</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-group">Grupo</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-year">Año</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-status">Estado</button>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-row-text">
+							<a href="../entry/?id=0&ty=concept">
+								<div>
+									<h3 class="open-sans-regular">Título</h3>
+									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-area">Area</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-group">Grupo</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-year">Año</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-status">Estado</button>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-row-text">
+							<a href="../entry/?id=0&ty=concept">
+								<div>
+									<h3 class="open-sans-regular">Título</h3>
+									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-area">Area</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-group">Grupo</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-year">Año</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-status">Estado</button>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-row-text">
+							<a href="../entry/?id=0&ty=concept">
+								<div>
+									<h3 class="open-sans-regular">Título</h3>
+									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-area">Area</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-group">Grupo</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-year">Año</button>
+						</td>
+						<td>
+							<button disabled class="table-row-btn-status">Estado</button>
+						</td>
+					</tr>
+				</table>
 			<?php
 			}
 			?>

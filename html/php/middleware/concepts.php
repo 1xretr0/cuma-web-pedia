@@ -103,15 +103,55 @@ function updateConceptAreaDetailById(string $conceptId, string $newValue) {
 	if (!$areaId)
 		return false;
 
-	return $mySQLManager->executeUpdate(
-		$mySQLManager->AREAS_TABLE,
+	// return $mySQLManager->executeUpdate(
+	// 	$mySQLManager->AREAS_TABLE,
+	// 	[
+	// 		$mySQLManager->RESOURCES_TITLE 	=> $title,
+	// 		$mySQLManager->RESOURCES_IMG 	=> $image,
+	// 		$mySQLManager->RESOURCES_URL 	=> $url,
+	// 		$mySQLManager->RESOURCES_TYPE 	=> $type,
+	// 		$mySQLManager->RESOURCES_LANG 	=> $lang
+	// 	],
+	// 	[$mySQLManager->RESOURCES_ID => $resourceId]
+	// );
+}
+
+function insertNewConcept(
+	string $uamName,
+	string $uamDescription,
+	string $conceptName,
+	?string $conceptImg	= null
+) {
+	$mySQLManager = new MySQLDAO();
+	$newConceptId = $mySQLManager->executeInsert(
+		$mySQLManager->CONCEPTS_TABLE,
 		[
-			$mySQLManager->RESOURCES_TITLE 	=> $title,
-			$mySQLManager->RESOURCES_IMG 	=> $image,
-			$mySQLManager->RESOURCES_URL 	=> $url,
-			$mySQLManager->RESOURCES_TYPE 	=> $type,
-			$mySQLManager->RESOURCES_LANG 	=> $lang
+			$mySQLManager->CONCEPTS_NAME 	=> $conceptName,
+			$mySQLManager->CONCEPTS_IMG 	=> $conceptImg
 		],
-		[$mySQLManager->RESOURCES_ID => $resourceId]
+		true,
+		true
 	);
+	// return $newConceptId;
+	// $newConceptId = 3;
+
+	if (!$newConceptId)
+		return false;
+
+	$newUamId = $mySQLManager->executeInsert(
+		$mySQLManager->UAMS_TABLE,
+		[
+			$mySQLManager->UAMS_NAME => $uamName,
+			$mySQLManager->UAMS_DESC => $uamDescription,
+			$mySQLManager->CONCEPTS_ID => $newConceptId,
+			$mySQLManager->EVENTS_ID => 1
+		],
+		true,
+		true
+	);
+
+	if (!$newUamId)
+		return false;
+
+	return true;
 }

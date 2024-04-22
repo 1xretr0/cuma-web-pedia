@@ -1,7 +1,7 @@
 <?php
 session_start();
-print_r($_SESSION);
-print_r($_REQUEST);
+// print_r($_SESSION);
+// print_r($_REQUEST);
 
 if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 	header('Location: ../');
