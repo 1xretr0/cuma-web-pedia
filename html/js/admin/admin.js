@@ -14,13 +14,5 @@
 			document.getElementById('create_user_h2').style.display = 'block';
 			document.getElementById('create_user_form').style.display = 'block';
 		});
-
-		// MODIFY USERS
-		modifyUsersBtn = document.getElementById('modify_users_li');
-		modifyUsersBtn.addEventListener('click', () => {
-			console.log("click on modify users li");
-
-			document.location.href = './usersmod.php';
-		});
     }
 })(window, document, undefined);

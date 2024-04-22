@@ -36,6 +36,7 @@ main {
 
 .content table tbody tr {
 	text-align: center;
+	font-size: 12px;
 	height: 35px;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
@@ -45,6 +46,23 @@ main {
 	font-size: 20px;
 	margin: 10px;
 	cursor: pointer;
+}
+
+/* TDS */
+#title {
+	width: 25%;
+}
+
+#image {
+	width: 20%;
+}
+
+#url {
+	width: 25%;
+}
+
+#type, #lang, #options_td {
+	width: 10%;
 }
 
 /* DETAILS */

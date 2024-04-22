@@ -27,3 +27,43 @@ function getHomeCarrouselData() {
 	// return (object) $result;
 	return $result;
 }
+
+function getAllResources()
+{
+	$mysqlManager = new MySQLDAO();
+	return $mysqlManager->executeSelect(
+		$mysqlManager->RESOURCES_TABLE,
+		[
+			$mysqlManager->RESOURCES_ID,
+			$mysqlManager->RESOURCES_TITLE,
+			$mysqlManager->RESOURCES_IMG,
+			$mysqlManager->RESOURCES_URL,
+			$mysqlManager->RESOURCES_TYPE,
+			$mysqlManager->RESOURCES_LANG
+		],
+		null,
+		true
+	);
+}
+
+function updateResourceById(
+	string $resourceId,
+	string $title,
+	string $image,
+	string $url,
+	string $type,
+	string $lang
+) {
+	$mysqlManager = new MySQLDAO();
+	return $mysqlManager->executeUpdate(
+		$mysqlManager->RESOURCES_TABLE,
+		[
+			$mysqlManager->RESOURCES_TITLE 	=> $title,
+			$mysqlManager->RESOURCES_IMG 	=> $image,
+			$mysqlManager->RESOURCES_URL 	=> $url,
+			$mysqlManager->RESOURCES_TYPE 	=> $type,
+			$mysqlManager->RESOURCES_LANG 	=> $lang
+		],
+		[$mysqlManager->RESOURCES_ID => $resourceId]
+	);
+}

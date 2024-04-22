@@ -18,11 +18,11 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 	<!-- main stylesheet-->
 	<link rel="stylesheet" href="../styles/main.css" />
 	<!-- home stylesheet -->
-	<link rel="stylesheet" href="../styles/admin/usersmod.css" />
+	<link rel="stylesheet" href="../styles/admin/resourcesmod.css" />
 	<!-- main script -->
 	<script src="../js/main.js"></script>
 	<!-- entry script -->
-	<script src="../js/admin/usersmod.js"></script>
+	<script src="../js/admin/resourcesmod.js"></script>
 	<!-- font awesome icons -->
 	<script src="https://kit.fontawesome.com/974e5c1fbe.js" crossorigin="anonymous"></script>
 	<title>Admin | CUMA</title>
@@ -49,12 +49,12 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 			<div id="container">
 				<section id="accordion">
 					<div>
-						<input type="checkbox" id="check-1" checked />
+						<input type="checkbox" id="check-1" />
 						<label for="check-1" class="open-sans-bold">USUARIOS</label>
 						<article class="open-sans-regular">
 							<ul>
 								<li id="create_user_li">
-									Crear usuario
+									<a href="./">Crear usuario</a>
 								</li>
 								<li id="modify_users_li">
 									<a href="./usersmod.php">Modificar usuarios</a>
@@ -63,7 +63,7 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 						</article>
 					</div>
 					<div>
-						<input type="checkbox" id="check-2" />
+						<input type="checkbox" id="check-2" checked />
 						<label for="check-2" class="open-sans-bold">RECURSOS</label>
 						<article class="open-sans-regular">
 							<ul>
@@ -78,37 +78,35 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 		</div>
 		<!-- CONTENT -->
 		<div class="content">
-			<h2 class="open-sans-bold">Modificar usuarios</h2>
+			<h2 class="open-sans-bold">Modificar recursos</h2>
 			<?php
-			require_once('../php/middleware/users.php');
-			$usersData = getAllUsers();
-			if ($usersData) {
+			require_once('../php/middleware/resources.php');
+			$resourcesData = getAllResources();
+			if ($resourcesData) {
 			?>
 				<table>
 					<thead class="open-sans-bold">
-						<!-- <th>ID</th> -->
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th>Correo</th>
-						<th>Contraseña</th>
-						<th>Admin</th>
+						<th>Título</th>
+						<th>Imagen</th>
+						<th>Url</th>
+						<th>Tipo</th>
+						<th>Idioma</th>
 						<th><i class="fa-solid fa-ellipsis-vertical"></i></th>
-						<!-- <th>Eliminar</th> -->
 					</thead>
 					<tbody class="open-sans-regular">
 						<?php
-						foreach ($usersData as $user) {
-							$user = (object) $user;
+						foreach ($resourcesData as $resource) {
+							$resource = (object) $resource;
 
 							echo "
 							<tr>
-								<td id='firstnames'>$user->nombres_personales_usuario</td>
-								<td id='lastnames'>$user->apellidos_personales_usuario</td>
-								<td id='email'>$user->correo_usuario</td>
-								<td id='password'>$user->contrasena_usuario</td>
-								<td id='admin'>$user->administrador</td>
+								<td id='title'>$resource->titulo_recurso</td>
+								<td id='image'>$resource->imagen</td>
+								<td id='url'>$resource->url_recurso</td>
+								<td id='type'>$resource->id_tipo_recurso</td>
+								<td id='lang'>$resource->idioma</td>
 								<td id='options_td' colspan='2'>
-									<i id='mod_user_$user->id_usuario' class='fa-solid fa-pen-to-square edit-button'></i> <i id='del_user_$user->id_usuario' class='fa-solid fa-trash delete-button' style='color: red;'></i>
+									<i id='mod_res_$resource->id_recurso' class='fa-solid fa-pen-to-square edit-button'></i> <i id='del_res_$resource->id_recurso' class='fa-solid fa-trash delete-button' style='color: red;'></i>
 								</td>
 							</tr>
 						";

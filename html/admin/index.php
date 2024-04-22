@@ -49,7 +49,7 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 			<div id="container">
 				<section id="accordion">
 					<div>
-						<input type="checkbox" id="check-1" checked/>
+						<input type="checkbox" id="check-1" checked />
 						<label for="check-1" class="open-sans-bold">USUARIOS</label>
 						<article class="open-sans-regular">
 							<ul>
@@ -57,18 +57,18 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 									Crear usuario
 								</li>
 								<li id="modify_users_li">
-									Modificar usuarios
+									<a href="./usersmod.php">Modificar usuarios</a>
 								</li>
 							</ul>
 						</article>
 					</div>
 					<div>
-						<input type="checkbox" id="check-2" checked/>
+						<input type="checkbox" id="check-2" checked />
 						<label for="check-2" class="open-sans-bold">RECURSOS</label>
 						<article class="open-sans-regular">
 							<ul>
-								<li>
-									Modificar recursos
+								<li id="modify_resources_li">
+									<a href="./resourcesmod.php">Modificar recursos</a>
 								</li>
 							</ul>
 						</article>

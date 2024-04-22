@@ -1,6 +1,7 @@
 <?php
 
 require_once('middleware/users.php');
+require_once('middleware/resources.php');
 session_start();
 // print_r($_SESSION);
 // print_r($_REQUEST);
@@ -36,6 +37,7 @@ if (
 	header('Location: ../admin/');
 	exit;
 }
+// USERS MOD UPDATE REQUEST
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$entityBody = json_decode(file_get_contents('php://input'));
 	if (!isset($entityBody)) {
@@ -43,14 +45,27 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	$result = updateUserById(
-		$entityBody->userId,
-		$entityBody->firstnames,
-		$entityBody->lastnames,
-		$entityBody->email,
-		$entityBody->password,
-		$entityBody->admin
-	);
+	if (isset($entityBody->userId)) {
+		$result = updateUserById(
+			$entityBody->userId,
+			$entityBody->firstnames,
+			$entityBody->lastnames,
+			$entityBody->email,
+			$entityBody->password,
+			$entityBody->admin
+		);
+	}
+	elseif (isset($entityBody->resourceId)) {
+		$result = updateResourceById(
+			$entityBody->resourceId,
+			$entityBody->title,
+			$entityBody->image,
+			$entityBody->url,
+			$entityBody->type,
+			$entityBody->lang
+		);
+	}
+
 	if (!$result) {
 		echo '{"error": true, "message": "Failed to update record"}';
 		exit;
@@ -60,6 +75,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	echo '{"error": false, "message": "Successfull update"}';
 	exit;
 }
+// USERS MOD DELETE REQUEST
 elseif (
 	$_SERVER['REQUEST_METHOD'] == 'DELETE' &&
 	isset($_GET['userId'])
