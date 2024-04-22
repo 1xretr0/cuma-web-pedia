@@ -31,6 +31,37 @@ class MySQLDAO {
 	public $RESOURCES_LANG 		= 'idioma';
 	public $RESOURCES_DATE 		= 'fecha_recurso';
 	public $RESOURCES_PUB_DATE 	= 'fecha_publicacion';
+	// uams table
+	public $UAMS_TABLE 			= 'cm_uams';
+	public $UAMS_ID 			= 'id_uam';
+	public $UAMS_NAME 			= 'nombre';
+	public $UAMS_DESC 			= 'descripcion';
+	// public $UAMS_CONCEPT_ID 	= 'id_fundamento';
+	public $UAMS_EVENT_ID 		= 'id_hecho';
+	// public $UAMS_STATE_ID		= 'id_estado';
+	// events table
+	public $EVENTS_TABLE 		= 'cm_hechos_culturales';
+	public $EVENTS_ID 			= 'id_hecho';
+	public $EVENTS_NAME 		= 'nombre_hecho';
+	public $EVENTS_DESC 		= 'descripcion';
+	public $EVENTS_YEAR 		= 'year';
+	// public $EVENTS_GROUP_ID 	= 'id_grupo';
+	// public $EVENTS_AREA_ID 		= 'id_area';
+	// cultural groups table
+	public $GROUPS_TABLE 		= 'cm_grupos_culturales';
+	public $GROUPS_ID 			= 'id_grupo';
+	public $GROUPS_NAME 		= 'nombre';
+	// geographic areas table
+	public $AREAS_TABLE 		= 'cm_areas_geograficas_ctl';
+	public $AREAS_ID 			= 'id_area';
+	public $AREAS_NAME 			= 'nombre_area';
+	// states table
+	public $STATES_TABLE		= 'cm_estados_migratorios_ctl';
+	public $STATES_ID			= 'id_estado';
+	public $STATES_NAME			= 'nombre_estado';
+	public $STATES_KEY			= 'clave_estado';
+	// resource concepts table
+	public $RESOURCE_CONCEPT_TABLE = 'cm_recurso_fundamentos';
 
 	public function __construct() {
 		// PHP_EXTENSION_DIR
@@ -128,24 +159,6 @@ class MySQLDAO {
 		$query = "SELECT $selectClause FROM $tableName $whereClause;";
 
 		try {
-			// if ($filters) {
-			// 	$stmt = $conn->prepare($query);
-
-			// 	// $paramTypes = '';
-			// 	// foreach ($filters as $value) {
-			// 	// 	if (gettype($value) === 'integer')
-			// 	// 		$paramTypes .= 'i';
-			// 	// 	else
-			// 	// 		$paramTypes .= 's';
-			// 	// }
-
-			// 	// $stmt->bind_param($paramTypes, array_values($filters));
-			// 	$stmt->execute(array_values($filters));
-			// 	$result = $stmt->get_result();
-			// }
-			// else {
-			// 	$result = $conn->query($query);
-			// }
 			$result = $conn->query($query);
 
 			if ($assoc)

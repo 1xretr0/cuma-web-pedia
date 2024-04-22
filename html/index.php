@@ -49,14 +49,13 @@ print_r($_REQUEST);
 		<!-- SEARCH BAR -->
 		<div class="outer-search-bar">
 			<select name="filter" form="search-form" class="open-sans-bold">
-				<!-- <option value="" selected>Todo</option> -->
 				<option value="concepts" selected>Fundamentos</option>
 				<option value="resources">Recursos</option>
 			</select>
 			<div class="inner-search-bar open-sans-regular">
-				<form id="search-form" action="#" method="post">
-					<input type="search" placeholder="Busca aquí..." name="query" required>
-					<button type="submit"><i class="fa-solid fa-magnifying-glass" style="font-size: 30px;"></i></button>
+				<form id="search-form" action="./php/home.php" method="post">
+					<input type="search" placeholder="<?php if(isset($_SESSION['searchError'])){ echo $_SESSION['searchError']; unset($_SESSION['searchError']);} else echo 'Busca aquí...'; ?>" name="query" required>
+					<button type="submit"><i class="fa-solid fa-magnifying-glass" style="font-size: 30px; color: black;"></i></button>
 				</form>
 			</div>
 		</div>

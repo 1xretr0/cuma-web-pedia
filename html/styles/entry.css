@@ -39,6 +39,10 @@ main {
 	color: #1F6ECC;
 }
 
+.details img {
+	width: 100%;
+}
+
 /* ACCORDEON */
 #container {
 	overflow-y: auto;

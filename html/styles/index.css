@@ -57,10 +57,13 @@ main {
 .content table tbody tr button {
 	border-radius: 20px;
 	border: none;
-	width: 70px;
-	height: 36px;
+	min-width: 70px;
+	/* max-width: 100px; */
+	min-height: 36px;
+	max-height: 50px;
 	text-align: center;
 	color: white;
+	margin: 0 10px;
 }
 
 /* TABLE BUTTON TAGS */

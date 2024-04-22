@@ -1,6 +1,8 @@
 <!-- RESOURCES PAGE -->
 <?php
 session_start();
+print_r($_SESSION);
+print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>
@@ -124,6 +126,49 @@ session_start();
 		</div>
 		<!-- CONTENT -->
 		<div class="content">
+			<?php
+			if (isset($_SESSION['searchResults'])) {
+			?>
+			<h2 class="open-sans-bold">Resultados de la búsqueda</h2>
+			<table>
+				<?php
+				foreach ($_SESSION['searchResults'] as $result) {
+					$result = (object) $result;
+
+					$result->titulo_recurso = mb_substr($result->titulo_recurso, 0, 50) . '...';
+					$result->descripcion_recurso = mb_substr($result->descripcion_recurso, 0, 70) . '...';
+
+					$conceptsJson = $result->json ? json_decode($result->json) : array();
+					// print_r($conceptsJson);
+					// die;
+					$conceptsTds = '';
+					foreach($conceptsJson as $concept) {
+						$conceptsTds .=
+							"<button disabled class='table-row-btn-year'>$concept->conceptName</button>";
+					}
+					echo "
+						<tr>
+							<td class='table-row-text'>
+								<a href='../entry/?id=$result->id_recurso&ty=resource'>
+									<div>
+										<h3 class='open-sans-regular'>$result->titulo_recurso</h3>
+										<p class='open-sans-light'>$result->descripcion_recurso</p>
+									</div>
+								</a>
+							</td>
+							<td>
+								$conceptsTds
+							</td>
+						</tr>
+					";
+				}
+				unset($_SESSION['searchResults']);
+				?>
+			</table>
+			<?php
+			}
+			else {
+			?>
 			<div class="slogan">
 				<h1 class="poiret-one-regular">Quizás te pueda interesar...</h1>
 			</div>
@@ -131,7 +176,7 @@ session_start();
 			<table>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=resource">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion del recurso</p>
@@ -139,24 +184,13 @@ session_start();
 						</a>
 					</td>
 					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-lang">Idioma</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-type">Tipo</button>
+						<button disabled class="table-row-btn-year">Fundamento 1</button>
+						<button disabled class="table-row-btn-year">Fundamento 2</button>
 					</td>
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=resource">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion del recurso.</p>
@@ -164,24 +198,15 @@ session_start();
 						</a>
 					</td>
 					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-lang">Idioma</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-type">Tipo</button>
+						<button disabled class="table-row-btn-year">Fundamento 1</button>
+						<button disabled class="table-row-btn-year">Fundamento 2</button>
+						<button disabled class="table-row-btn-year">Fundamento 3</button>
+						<button disabled class="table-row-btn-year">Fundamento 4</button>
 					</td>
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=resource">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion del recurso.</p>
@@ -189,24 +214,13 @@ session_start();
 						</a>
 					</td>
 					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-lang">Idioma</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-type">Tipo</button>
+						<button disabled class="table-row-btn-year">Fundamento 1</button>
+						<button disabled class="table-row-btn-year">Fundamento 2</button>
 					</td>
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=resource">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion del recurso.</p>
@@ -214,24 +228,13 @@ session_start();
 						</a>
 					</td>
 					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-lang">Idioma</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-type">Tipo</button>
+						<button disabled class="table-row-btn-year">Fundamento 1</button>
+						<button disabled class="table-row-btn-year">Fundamento 2</button>
 					</td>
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=resource">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion del recurso.</p>
@@ -239,22 +242,15 @@ session_start();
 						</a>
 					</td>
 					<td>
-						<button disabled class="table-row-btn-area">Area</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-group">Grupo</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-year">Año</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-lang">Idioma</button>
-					</td>
-					<td>
-						<button disabled class="table-row-btn-type">Tipo</button>
+						<button disabled class="table-row-btn-year">Fundamento 1</button>
+						<button disabled class="table-row-btn-year">Fundamento 2</button>
+						<button disabled class="table-row-btn-year">Fundamento 3</button>
 					</td>
 				</tr>
 			</table>
+			<?php
+			}
+			?>
 		</div>
 	</main>
 </body>

@@ -1,7 +1,8 @@
 <!-- INDEX PAGE -->
 <?php
 session_start();
-
+print_r($_SESSION);
+print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>
@@ -114,6 +115,50 @@ session_start();
 		</div>
 		<!-- CONTENT -->
 		<div class="content">
+			<?php
+			if (isset($_SESSION['searchResults'])) {
+			?>
+			<h2 class="open-sans-bold">Resultados de la búsqueda</h2>
+			<table>
+				<?php
+				foreach ($_SESSION['searchResults'] as $result) {
+					$result = (object) $result;
+
+					$result->nombre = mb_substr($result->nombre, 0, 50) . '...';
+					$result->descripcion = mb_substr($result->descripcion, 0, 70) . '...';
+
+					echo "
+						<tr>
+							<td class='table-row-text'>
+								<a href='../entry/?id=$result->id_uam&ty=concept'>
+									<div>
+										<h3 class='open-sans-regular'>$result->nombre</h3>
+										<p class='open-sans-light'>$result->descripcion</p>
+									</div>
+								</a>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-area'>$result->nombre_area</button>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-group'>$result->nombre_grupo</button>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-year'>$result->year</button>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-status'>$result->nombre_estado</button>
+							</td>
+						</tr>
+					";
+				}
+				unset($_SESSION['searchResults']);
+				?>
+			</table>
+			<?php
+			}
+			else {
+			?>
 			<div class="slogan">
 				<h1 class="poiret-one-regular">Quizás te pueda interesar...</h1>
 			</div>
@@ -121,7 +166,7 @@ session_start();
 			<table>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=concept">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
@@ -143,7 +188,7 @@ session_start();
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=concept">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
@@ -165,7 +210,7 @@ session_start();
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=concept">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
@@ -187,7 +232,7 @@ session_start();
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=concept">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
@@ -209,7 +254,7 @@ session_start();
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=concept">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
@@ -231,7 +276,7 @@ session_start();
 				</tr>
 				<tr>
 					<td class="table-row-text">
-						<a href="../entry/?id=1">
+						<a href="../entry/?id=0&ty=concept">
 							<div>
 								<h3 class="open-sans-regular">Título</h3>
 								<p class="open-sans-light">Esta es una descripcion de la entrada</p>
@@ -252,6 +297,9 @@ session_start();
 					</td>
 				</tr>
 			</table>
+			<?php
+			}
+			?>
 		</div>
 	</main>
 </body>
