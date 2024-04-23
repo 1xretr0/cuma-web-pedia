@@ -63,6 +63,10 @@ class MySQLDAO {
 	// resource concepts table
 	public $RESOURCE_CONCEPT_TABLE = 'cm_recurso_fundamentos';
 
+	public $RESOURCE_TYPES_TABLE = 'cm_tipos_recurso_ctl';
+	public $RESOURCE_TYPES_ID 	= 'id_tipo';
+	public $RESOURCE_TYPES_NAME = 'nombre';
+
 	public function __construct() {
 		// PHP_EXTENSION_DIR
 		$this->loadDotenv();

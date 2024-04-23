@@ -1,0 +1,19 @@
+<?php
+
+require_once(realpath(dirname(__FILE__) . "/..") . '/db/MySQLDAO.php');
+
+function getAllGroupsData() {
+	$mysqlManager = new MySQLDAO();
+	$result = $mysqlManager->executeSelect(
+		$mysqlManager->GROUPS_TABLE,
+		null,
+		null,
+		true
+	);
+
+	if (!$result) {
+		return [];
+	}
+
+	return $result;
+}

@@ -164,6 +164,16 @@ function searchResourcesByName($name) {
 	return $result;
 }
 
+function getAllResourceTypesData() {
+	$mySQLManager = new MySQLDAO();
+	return $mySQLManager->executeSelect(
+		$mySQLManager->RESOURCE_TYPES_TABLE,
+		null,
+		null,
+		true
+	);
+}
+
 function updateResourceById(
 	string $resourceId,
 	string $title,

@@ -3,6 +3,8 @@
 
     function init() {
 		const newButton = document.getElementById("new_button");
+		if (!newButton)
+			return;
 
         newButton.addEventListener("click", () => {
 			console.log('clicked new');

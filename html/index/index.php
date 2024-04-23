@@ -1,5 +1,9 @@
 <!-- INDEX PAGE -->
 <?php
+require_once('../php/middleware/areas.php');
+require_once('../php/middleware/events.php');
+require_once('../php/middleware/groups.php');
+require_once('../php/middleware/states.php');
 session_start();
 // print_r($_SESSION);
 // print_r($_REQUEST);
@@ -48,15 +52,12 @@ session_start();
 						<label for="check-1" class="open-sans-bold">ÁREA</label>
 						<article class="open-sans-regular">
 							<ul>
-								<li>
-									Área 1
-								</li>
-								<li>
-									Área 2
-								</li>
-								<li>
-									Área 3
-								</li>
+								<?php
+								foreach (getAllAreasData() as $area) {
+									$area = (object) $area;
+									echo "<li>$area->nombre_area</li>";
+								}
+								?>
 							</ul>
 						</article>
 					</div>
@@ -65,15 +66,11 @@ session_start();
 						<label for="check-2" class="open-sans-bold">AÑO</label>
 						<article class="open-sans-regular">
 							<ul>
-								<li>
-									Año 1
-								</li>
-								<li>
-									Año 2
-								</li>
-								<li>
-									Año 3
-								</li>
+								<?php
+								foreach (getAllEventsYears() as $year) {
+									echo "<li>$year</li>";
+								}
+								?>
 							</ul>
 						</article>
 					</div>
@@ -82,15 +79,12 @@ session_start();
 						<label for="check-3" class="open-sans-bold">GRUPO CULTURAL</label>
 						<article class="open-sans-regular">
 							<ul>
-								<li>
-									Año 1
-								</li>
-								<li>
-									Año 2
-								</li>
-								<li>
-									Año 3
-								</li>
+								<?php
+								foreach (getAllGroupsData() as $group) {
+									$group = (object) $group;
+									echo "<li>$group->nombre</li>";
+								}
+								?>
 							</ul>
 						</article>
 					</div>
@@ -99,15 +93,12 @@ session_start();
 						<label for="check-4" class="open-sans-bold">ESTADO MIGRATORIO</label>
 						<article class="open-sans-regular">
 							<ul>
-								<li>
-									Año 1
-								</li>
-								<li>
-									Año 2
-								</li>
-								<li>
-									Año 3
-								</li>
+								<?php
+								foreach (getAllStatesKeys() as $state) {
+									$state = (object) $state;
+									echo "<li>$state->clave_estado</li>";
+								}
+								?>
 							</ul>
 						</article>
 					</div>
