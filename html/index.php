@@ -88,18 +88,24 @@ session_start();
 							";
 					}
 					?>
-					<span>
-						<img id="item" class="item" src="img/305x205.png" />
-						<p class="open-sans-bold">¿Por qué no puedo dormir?</p>
-					</span>
-					<span>
-						<img id="item" class="item" src="img/305x205.png" />
-						<p class="open-sans-bold">Inmunidad de rebaño</p>
-					</span>
-					<span>
-						<img id="item" class="item" src="img/305x205.png" />
-						<p class="open-sans-bold">Estrés y salud</p>
-					</span>
+					<a href="./entry/?id=0&ty=resource">
+						<span>
+							<img id="item" class="item" src="img/305x205.png" />
+							<p class="open-sans-bold">¿Por qué no puedo dormir?</p>
+						</span>
+					</a>
+					<a href="./entry/?id=0&ty=concept">
+						<span>
+							<img id="item" class="item" src="img/305x205.png" />
+							<p class="open-sans-bold">Inmunidad de rebaño</p>
+						</span>
+					</a>
+					<a href="./entry/?id=0&ty=resource">
+						<span>
+							<img id="item" class="item" src="img/305x205.png" />
+							<p class="open-sans-bold">Estrés y salud</p>
+						</span>
+					</a>
 					<a href='#'>
 						<span>
 							<p class='open-sans-bold'>El sistema endocrino</p>
@@ -129,13 +135,13 @@ session_start();
 					CUMA es el proyecto dedicado a la creación de una enciclopedia estructurada de costumbres, creencias e interpretaciones culturales en materia de salud.<br><br>Buscamos abordar las complejidades de la relación entre la salud y la diversidad cultural, ofreciendo un espacio donde investigadores, profesionales de la salud y la comunidad puedan explorar y comprender mejor las diferencias culturales en el ámbito de la atención médica.
 				</p>
 			</div>
-			<div>
-				<img src="img/572x395.png">
+			<div class="about-image">
+				<img src="img/home_about_2.jpeg" style="margin-left: 25%; max-width: 50%">
 			</div>
 		</div>
 		<div class="about">
 			<div class="about-image">
-				<img src="img/572x395.png">
+				<img src="img/home_about_1.jpeg" style="max-width: 70%;">
 			</div>
 			<div class="about-text" style="text-align: right;">
 				<h1 class="poiret-one-regular">Enciclopedia</h1>
