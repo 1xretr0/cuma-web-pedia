@@ -75,13 +75,25 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	if (isset($entityBody->entryType) && isset($entityBody->fieldName)) {
-		$result = updateConceptAreaDetailById(
-			$entityBody->entryId,
-			$entityBody->newValue
-		);
-	} else {
-		$result = false;
+	if (
+		!isset($entityBody->entryType) ||
+		!isset($entityBody->entryId) ||
+		!isset($entityBody->fieldName) ||
+		!isset($entityBody->newValue) ||
+		$entityBody->entryId == '0'
+	) {
+		echo '{"error": true, "message": "Missing required parameters"}';
+		exit;
+	}
+
+	// switch case for $entityBody->fieldName
+	switch ($entityBody->fieldName) {
+		case 'area_name':
+			$result = updateConceptAreaDetailById($entityBody->entryId, $entityBody->newValue);
+			break;
+		default:
+			$result = true;
+			break;
 	}
 
 	if (!$result) {
@@ -89,7 +101,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	echo '{"error": false, "message": "' . $result . '"}';
-	// echo '{"error": false, "message": "Successfull update"}';
+	// echo '{"error": false, "message": "' . $result . '"}';
+	echo '{"error": false, "message": "Successfull update"}';
 	exit;
 }

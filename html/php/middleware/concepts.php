@@ -81,39 +81,25 @@ function getConceptDataById(string $conceptId) {
 
 function updateConceptAreaDetailById(string $conceptId, string $newValue) {
 	$mySQLManager = new MySQLDAO();
-	$query = "SELECT
-				ag.id_area
-			FROM
-			cm_uams u
-			JOIN
-			cm_hechos_culturales hc ON hc.id_hecho = u.id_hecho
-			JOIN
-			cm_areas_geograficas_ctl ag ON ag.id_area = hc.id_area
-			WHERE
-				u.id_uam = $conceptId
-			LIMIT 1;
-	";
-	return $query;
+	$query = "SELECT ag.id_area FROM cm_uams u JOIN cm_hechos_culturales hc ON hc.id_hecho = u.id_hecho JOIN cm_areas_geograficas_ctl ag ON ag.id_area = hc.id_area WHERE u.id_uam = $conceptId LIMIT 1;";
+	// return $query;
 
 	$areaId = $mySQLManager->executeRawSelect(
-		$query
+		$query,
+		true
 	);
-	return $areaId[0];
+	// return $areaId[0]['id_area'];
 
 	if (!$areaId)
 		return false;
 
-	// return $mySQLManager->executeUpdate(
-	// 	$mySQLManager->AREAS_TABLE,
-	// 	[
-	// 		$mySQLManager->RESOURCES_TITLE 	=> $title,
-	// 		$mySQLManager->RESOURCES_IMG 	=> $image,
-	// 		$mySQLManager->RESOURCES_URL 	=> $url,
-	// 		$mySQLManager->RESOURCES_TYPE 	=> $type,
-	// 		$mySQLManager->RESOURCES_LANG 	=> $lang
-	// 	],
-	// 	[$mySQLManager->RESOURCES_ID => $resourceId]
-	// );
+	return $mySQLManager->executeUpdate(
+		$mySQLManager->AREAS_TABLE,
+		[
+			$mySQLManager->AREAS_NAME => $newValue
+		],
+		[$mySQLManager->AREAS_ID => $areaId[0]['id_area']],
+	);
 }
 
 function insertNewConcept(

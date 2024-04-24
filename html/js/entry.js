@@ -20,111 +20,137 @@
 			console.log('click');
 			console.log(this.id);
 
-			if (this.id == "area_name") {
-                const pElement = document.getElementById("p-" + this.id);
-                const currentValue = pElement.innerHTML;
+			// if (this.id == "area_name") {
+            //     const pElement = document.getElementById("p-" + this.id);
+            //     const currentValue = pElement.innerHTML;
 
-                const input = document.createElement("input");
-                input.id = "i-" + this.id;
-                input.type = "text";
-                input.value = currentValue;
-                input.style.minWidth = "60%";
-                input.style.maxWidth = "80%";
-                input.style.padding = "5px";
+            //     const input = document.createElement("input");
+            //     input.id = "i-" + this.id;
+            //     input.type = "text";
+            //     input.value = currentValue;
+            //     input.style.minWidth = "60%";
+            //     input.style.maxWidth = "80%";
+            //     input.style.padding = "5px";
 
-                const saveButton = document.createElement("i");
-                saveButton.id = "s-" + this.id;
-                saveButton.classList.add("fa-solid");
-                saveButton.classList.add("fa-floppy-disk");
-                // saveButton.style.color = "red";
-                saveButton.style.cursor = "pointer";
-                saveButton.addEventListener("click", saveDetailField);
+            //     const saveButton = document.createElement("i");
+            //     saveButton.id = "s-" + this.id;
+            //     saveButton.classList.add("fa-solid");
+            //     saveButton.classList.add("fa-floppy-disk");
+            //     // saveButton.style.color = "red";
+            //     saveButton.style.cursor = "pointer";
+            //     saveButton.addEventListener("click", saveDetailField);
 
-                // replace
-                // this.remove();
+            //     // replace
+            //     this.remove();
 
-                pElement.innerHTML = "";
-                pElement.appendChild(input);
-                pElement.appendChild(saveButton);
-            }
-			else if (this.id == "group_name") {
-                const pElement = document.getElementById("p-" + this.id);
-                const currentValue = pElement.innerHTML;
+            //     pElement.innerHTML = "";
+            //     pElement.appendChild(input);
+            //     pElement.appendChild(saveButton);
+            // }
+			// else if (this.id == "group_name") {
+            //     const pElement = document.getElementById("p-" + this.id);
+            //     const currentValue = pElement.innerHTML;
 
-                const input = document.createElement("input");
-                input.id = "i-" + this.id;
-                input.type = "text";
-                input.value = currentValue;
-                input.style.minWidth = "60%";
-                input.style.maxWidth = "80%";
-                input.style.padding = "5px";
+            //     const input = document.createElement("input");
+            //     input.id = "i-" + this.id;
+            //     input.type = "text";
+            //     input.value = currentValue;
+            //     input.style.minWidth = "60%";
+            //     input.style.maxWidth = "80%";
+            //     input.style.padding = "5px";
 
-                const saveButton = document.createElement("i");
-                saveButton.id = "s-" + this.id;
-                saveButton.classList.add("fa-solid");
-                saveButton.classList.add("fa-floppy-disk");
-                saveButton.style.cursor = "pointer";
-                saveButton.addEventListener("click", saveDetailField);
+            //     const saveButton = document.createElement("i");
+            //     saveButton.id = "s-" + this.id;
+            //     saveButton.classList.add("fa-solid");
+            //     saveButton.classList.add("fa-floppy-disk");
+            //     saveButton.style.cursor = "pointer";
+            //     saveButton.addEventListener("click", saveDetailField);
 
-                // replace
-                // this.remove();
+            //     // replace
+            //     this.remove();
 
-                pElement.innerHTML = "";
-                pElement.appendChild(input);
-                pElement.appendChild(saveButton);
-            }
-			else if (this.id == "year") {
-                const pElement = document.getElementById("p-" + this.id);
-                const currentValue = pElement.innerHTML;
+            //     pElement.innerHTML = "";
+            //     pElement.appendChild(input);
+            //     pElement.appendChild(saveButton);
+            // }
+			// else if (this.id == "year") {
+            //     const pElement = document.getElementById("p-" + this.id);
+            //     const currentValue = pElement.innerHTML;
 
-                const input = document.createElement("input");
-                input.id = "i-" + this.id;
-                input.type = "text";
-                input.value = currentValue;
-                input.style.minWidth = "60%";
-                input.style.maxWidth = "80%";
-                input.style.padding = "5px";
+            //     const input = document.createElement("input");
+            //     input.id = "i-" + this.id;
+            //     input.type = "text";
+            //     input.value = currentValue;
+            //     input.style.minWidth = "60%";
+            //     input.style.maxWidth = "80%";
+            //     input.style.padding = "5px";
 
-                const saveButton = document.createElement("i");
-                saveButton.id = "s-" + this.id;
-                saveButton.classList.add("fa-solid");
-                saveButton.classList.add("fa-floppy-disk");
-                saveButton.style.cursor = "pointer";
-                saveButton.addEventListener("click", saveDetailField);
+            //     const saveButton = document.createElement("i");
+            //     saveButton.id = "s-" + this.id;
+            //     saveButton.classList.add("fa-solid");
+            //     saveButton.classList.add("fa-floppy-disk");
+            //     saveButton.style.cursor = "pointer";
+            //     saveButton.addEventListener("click", saveDetailField);
 
-                // replace
-                // this.remove();
+            //     // replace
+            //     this.remove();
 
-                pElement.innerHTML = "";
-                pElement.appendChild(input);
-                pElement.appendChild(saveButton);
-            }
-			else if (this.id == "state_name") {
-                const pElement = document.getElementById("p-" + this.id);
-                const currentValue = pElement.innerHTML;
+            //     pElement.innerHTML = "";
+            //     pElement.appendChild(input);
+            //     pElement.appendChild(saveButton);
+            // }
+			// else if (this.id == "state_name") {
+            //     const pElement = document.getElementById("p-" + this.id);
+            //     const currentValue = pElement.innerHTML;
 
-                const input = document.createElement("input");
-                input.id = "i-" + this.id;
-                input.type = "text";
-                input.value = currentValue;
-                input.style.minWidth = "60%";
-                input.style.maxWidth = "80%";
-                input.style.padding = "5px";
+            //     const input = document.createElement("input");
+            //     input.id = "i-" + this.id;
+            //     input.type = "text";
+            //     input.value = currentValue;
+            //     input.style.minWidth = "60%";
+            //     input.style.maxWidth = "80%";
+            //     input.style.padding = "5px";
 
-                const saveButton = document.createElement("i");
-                saveButton.id = "s-" + this.id;
-                saveButton.classList.add("fa-solid");
-                saveButton.classList.add("fa-floppy-disk");
-                saveButton.style.cursor = "pointer";
-                saveButton.addEventListener("click", saveDetailField);
+            //     const saveButton = document.createElement("i");
+            //     saveButton.id = "s-" + this.id;
+            //     saveButton.classList.add("fa-solid");
+            //     saveButton.classList.add("fa-floppy-disk");
+            //     saveButton.style.cursor = "pointer";
+            //     saveButton.addEventListener("click", saveDetailField);
 
-                // replace
-                // this.remove();
+            //     // replace
+            //     this.remove();
 
-                pElement.innerHTML = "";
-                pElement.appendChild(input);
-                pElement.appendChild(saveButton);
-            }
+            //     pElement.innerHTML = "";
+            //     pElement.appendChild(input);
+            //     pElement.appendChild(saveButton);
+            // }
+
+			const pElement = document.getElementById("p-" + this.id);
+            const currentValue = pElement.innerHTML;
+
+            const input = document.createElement("input");
+            input.id = "i-" + this.id;
+            input.type = "text";
+            input.value = currentValue;
+            input.style.minWidth = "60%";
+            input.style.maxWidth = "80%";
+            input.style.padding = "5px";
+
+            const saveButton = document.createElement("i");
+            saveButton.id = "s-" + this.id;
+            saveButton.classList.add("fa-solid");
+            saveButton.classList.add("fa-floppy-disk");
+            // saveButton.style.color = "red";
+            saveButton.style.cursor = "pointer";
+            saveButton.addEventListener("click", saveDetailField);
+
+            // replace
+            this.remove();
+
+            pElement.innerHTML = "";
+            pElement.appendChild(input);
+            pElement.appendChild(saveButton);
 		}
 
 		function saveDetailField() {
@@ -155,6 +181,7 @@
 				newValue: newValue
 			};
 			console.log(params);
+			// return;
 
 			postData("../php/entry.php", params).then((response) => {
 				console.log("update response", response);
