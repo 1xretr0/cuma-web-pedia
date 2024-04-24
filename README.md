@@ -14,5 +14,5 @@ The ERD created using Lucidchart can be found [here](https://lucid.app/documents
 The DDL of the designed database was generated usign Navicat Data Transfer Tool to export the ERD to actual SQL.
 The file containing it can also be found in the repository files.
 
-# Prototype Design
+## Prototype Design
 The visual prototype design was created using [Figma](https://www.figma.com/file/BziQtPOYo6pxpsxlMY18rq/CUMA?type=design&node-id=0%3A1&mode=design&t=kmq2QGhx3xz2JdJS-1). Despite the prototype not being fully finished, it declares the color pallete of the whole page, fonts, main logotype and more.
