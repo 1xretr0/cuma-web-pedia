@@ -174,6 +174,38 @@ function getAllResourceTypesData() {
 	);
 }
 
+// insert new resource
+function insertNewResource(
+	string $title,
+	string $description,
+	string $content,
+	string $url,
+	string $type,
+	string $lang,
+	?string $image = null
+) {
+	$mySQLManager = new MySQLDAO();
+	$resourceId = $mySQLManager->executeInsert(
+		$mySQLManager->RESOURCES_TABLE,
+		[
+			$mySQLManager->RESOURCES_TITLE 	=> $title,
+			$mySQLManager->RESOURCES_DESC 	=> $description,
+			$mySQLManager->RESOURCES_CONTENT => $content,
+			$mySQLManager->RESOURCES_URL 	=> $url,
+			$mySQLManager->RESOURCES_TYPE 	=> $type,
+			$mySQLManager->RESOURCES_LANG 	=> $lang,
+			$mySQLManager->RESOURCES_IMG 	=> $image
+		],
+		true
+	);
+	// print_r($resourceId)
+
+	if (!$resourceId)
+		return false;
+
+	return true;
+}
+
 function updateResourceById(
 	string $resourceId,
 	string $title,
