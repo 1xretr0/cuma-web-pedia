@@ -1,4 +1,4 @@
-<!-- INDEX PAGE -->
+<!-- NEW CONCEPTS ENTRY PAGE -->
 <?php
 session_start();
 // print_r($_SESSION);
@@ -20,7 +20,7 @@ if (!isset($_SESSION['loggedUserId'])) {
 	<!-- main stylesheet-->
 	<link rel="stylesheet" href="../styles/main.css" />
 	<!-- index stylesheet -->
-	<link rel="stylesheet" href="../styles/index.css" />
+	<link rel="stylesheet" href="../styles/newentry.css" />
 	<!-- main script -->
 	<script src="../js/main.js"></script>
 	<script src="../js/newentry.js"></script>
@@ -59,15 +59,16 @@ if (!isset($_SESSION['loggedUserId'])) {
 		<!-- CONTENT -->
 		<div class="content">
 			<h2 class="open-sans-bold">Crear nueva entrada</h2>
-			<div id="create_user_form">
+			<div>
 				<form method="post" action="../php/entry.php" enctype="multipart/form-data">
 					<input name="uam_name" class="open-sans-regular" placeholder="Nombre entrada" type="text" maxlength="40" required>
 					<br>
-					<textarea name="uam_description" class="open-sans-regular" placeholder="Descripcion" cols="30" rows="5" required></textarea>
+					<textarea name="uam_description" class="open-sans-regular" placeholder="Descripcion" cols="30" rows="5" maxlength="100" required></textarea>
 					<br>
 					<input name="concept_name" class="open-sans-regular" placeholder="Nombre fundamento sanitario" type="text" maxlength="40" required>
 					<br>
-					<input name="concept_img" class="open-sans-regular" placeholder="Contraseña" type="file">
+					<label for="concept_img_i" class="open-sans-regular">Cargue imagen relacionada: </label>
+					<input id="concept_img_i" name="concept_img" class="open-sans-regular" type="file">
 					<br>
 					<button class="open-sans-bold" type="submit">Crear</button>
 				</form>

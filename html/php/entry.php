@@ -5,6 +5,7 @@ session_start();
 // print_r($_REQUEST);
 // die;
 
+// NEW CONCEPT ENTRY
 if (
 	$_SERVER['REQUEST_METHOD'] == 'POST' &&
 	isset($_POST['uam_name']) &&
@@ -66,6 +67,7 @@ if (
 	header('Location: ../index/');
 	exit;
 }
+// UPDATE ENTRY DETAILS
 else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$entityBody = json_decode(file_get_contents('php://input'));
 	if (!isset($entityBody)) {

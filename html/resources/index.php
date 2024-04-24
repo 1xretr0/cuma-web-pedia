@@ -6,8 +6,8 @@ require_once('../php/middleware/groups.php');
 require_once('../php/middleware/resources.php');
 
 session_start();
-// print_r($_SESSION);
-// print_r($_REQUEST);
+print_r($_SESSION);
+print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>
@@ -22,6 +22,7 @@ session_start();
 	<link rel="stylesheet" href="../styles/index.css" />
 	<!-- main script -->
 	<script src="../js/main.js"></script>
+	<script src="../js/index.js"></script>
 	<!-- font awesome icons -->
 	<script src="https://kit.fontawesome.com/974e5c1fbe.js" crossorigin="anonymous"></script>
 	<title>Recursos | CUMA</title>
@@ -124,7 +125,7 @@ session_start();
 			<?php
 			if (isset($_SESSION['searchResults'])) {
 			?>
-				<h2 class="open-sans-bold">Resultados de la búsqueda</h2>
+				<h2 class="open-sans-bold">Resultados de la búsqueda <?= isset($_SESSION['admin']) ? "<button id='new_button'>Crear nuevo</button>" : "" ?></h2>
 				<table>
 					<?php
 					foreach ($_SESSION['searchResults'] as $result) {
@@ -166,7 +167,7 @@ session_start();
 				<div class="slogan">
 					<h1 class="poiret-one-regular">Quizás te pueda interesar...</h1>
 				</div>
-				<h2 class="open-sans-bold">Recursos recientes</h2>
+				<h2 class="open-sans-bold">Recursos recientes <?= isset($_SESSION['admin']) ? "<button id='new_button'>Crear nuevo</button>" : "" ?></h2>
 				<table>
 					<tr>
 						<td class="table-row-text">
