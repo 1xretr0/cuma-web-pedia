@@ -227,3 +227,12 @@ function updateResourceById(
 		[$mySQLManager->RESOURCES_ID => $resourceId]
 	);
 }
+
+// delete resource by id
+function deleteResourceById(string $resourceId) {
+	$mySQLManager = new MySQLDAO();
+	return $mySQLManager->executeDelete(
+		$mySQLManager->RESOURCES_TABLE,
+		[$mySQLManager->RESOURCES_ID => $resourceId]
+	);
+}

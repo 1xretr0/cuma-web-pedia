@@ -6,8 +6,8 @@ require_once('../php/middleware/groups.php');
 require_once('../php/middleware/resources.php');
 
 session_start();
-print_r($_SESSION);
-print_r($_REQUEST);
+// print_r($_SESSION);
+// print_r($_REQUEST);
 
 ?>
 <!DOCTYPE html>

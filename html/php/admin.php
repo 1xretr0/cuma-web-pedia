@@ -90,3 +90,18 @@ elseif (
 
 	exit;
 }
+// RESOURCES MOD DELETE REQUEST
+elseif (
+	$_SERVER['REQUEST_METHOD'] == 'DELETE' &&
+	isset($_GET['resourceId'])
+) {
+	$result = deleteResourceById($_GET['resourceId']);
+	echo $result ?
+		'{"error": false, "message": "Successfull delete"}'
+		// '{"error": false, "message": "' . $result . '"}'
+	:
+		'{"error": true, "message": "Failed to delete!"}'
+	;
+
+	exit;
+}
