@@ -94,43 +94,22 @@ $data = (object) $data;
 			<div id="container">
 				<section id="accordion">
 					<div>
-						<input type="checkbox" id="" />
 						<label id="back_label" for="" class="open-sans-bold">VOLVER <i class="fa-solid fa-angles-left"></i></label>
 					</div>
 					<div>
 						<label id="contents_label" for="" class="open-sans-bold">CONTENIDOS</label>
 					</div>
 					<div>
-						<input type="checkbox" id="check-2" />
-						<label for="check-2" class="open-sans-bold">SECCIÓN</label>
-						<article class="open-sans-regular">
-							<ul>
-								<li>
-									Subsección
-								</li>
-								<li>
-									Subsección
-								</li>
-								<li>
-									Subsección
-								</li>
-							</ul>
-						</article>
+						<label for="check-2" class="open-sans-bold">TÍTULO</label>
 					</div>
 					<div>
-						<input type="checkbox" id="check-3" />
-						<label for="check-3" class="open-sans-bold">SECCIÓN</label>
-						<article class="open-sans-regular">
-							<ul>
-								<li>
-									Subsección
-								</li>
-								<li>
-									Subsección
-								</li>
-							</ul>
-						</article>
+						<label for="check-3" class="open-sans-bold">DESCRIPCIÓN</label>
 					</div>
+					<?php if ($_GET['ty'] === 'resource') { ?>
+						<div>
+							<label for="check-4" class="open-sans-bold">CONTENIDO</label>
+						</div>
+					<?php } ?>
 				</section>
 			</div>
 		</div>
