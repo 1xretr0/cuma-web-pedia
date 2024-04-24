@@ -142,6 +142,8 @@ button {
     scroll-snap-align: center;
     background-color: #1f6ecc;
     border-radius: 8px;
+	max-width: 305px;
+  	max-height: 205px;
 }
 
 /* DISCOVER */

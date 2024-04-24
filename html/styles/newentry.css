@@ -1,0 +1,75 @@
+/* MAIN FRAME */
+main {
+	height: 55rem;
+    display: grid;
+	grid-template-columns: 250px auto;
+	column-gap: 10px;
+}
+
+/* SLOGAN */
+.slogan h1 {
+    text-align: center;
+    font-size: 50px;
+	color: #1F6ECC;
+}
+
+/* CONTENT */
+.content {
+	height: 650px;
+	margin-right: 10px;
+}
+
+.content h2 button {
+ 	text-align: center;
+    padding: 14px 20px;
+	text-decoration: none;
+    color: white;
+    background-color: #154074;
+    border-style: none;
+    border-radius: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.content h2 button:hover {
+	background-color: #195094;
+}
+
+.content form input {
+	width: 50%;
+	min-height: 45px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	font-size: 15px;
+}
+
+.content form textarea {
+	width: 50%;
+	min-height: 60px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+}
+
+.content form select {
+	min-height: 45px;
+	border-radius: 5px;
+	margin: 0 10px 20px 10px;
+	padding-left: 10px;
+	font-size: 15px;
+}
+
+.content form button {
+	width: 256px;
+	height: 51px;
+	border-radius: 5px;
+	color: white;
+	background-color: #154074;
+	font-size: 20px;
+}
+
+.content form button:hover {
+	background-color: #195094;
+}
