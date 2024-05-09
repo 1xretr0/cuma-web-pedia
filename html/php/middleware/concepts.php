@@ -27,7 +27,10 @@ function searchConceptsByName(string $name)
 		LEFT JOIN
 			cm_estados_migratorios_ctl em ON em.id_estado = u.id_estado
 		WHERE
-			u.nombre LIKE '%$name%';
+			u.nombre LIKE '%$name%'
+		ORDER BY
+			u.nombre
+		;
 	";
 	// return $query;
 

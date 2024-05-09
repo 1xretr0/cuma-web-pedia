@@ -86,11 +86,11 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 			?>
 				<table>
 					<thead class="open-sans-bold">
-						<!-- <th>ID</th> -->
+						<th>ID</th>
 						<th>Nombres</th>
 						<th>Apellidos</th>
 						<th>Correo</th>
-						<th>Contraseña</th>
+						<!-- <th>Contraseña</th> -->
 						<th>Admin</th>
 						<th><i class="fa-solid fa-ellipsis-vertical"></i></th>
 						<!-- <th>Eliminar</th> -->
@@ -102,10 +102,10 @@ if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
 
 							echo "
 							<tr>
+								<td id='id'>$user->id_usuario</td>
 								<td id='firstnames'>$user->nombres_personales_usuario</td>
 								<td id='lastnames'>$user->apellidos_personales_usuario</td>
 								<td id='email'>$user->correo_usuario</td>
-								<td id='password'>$user->contrasena_usuario</td>
 								<td id='admin'>$user->administrador</td>
 								<td id='options_td' colspan='2'>
 									<i id='mod_user_$user->id_usuario' class='fa-solid fa-pen-to-square edit-button'></i> <i id='del_user_$user->id_usuario' class='fa-solid fa-trash delete-button' style='color: red;'></i>

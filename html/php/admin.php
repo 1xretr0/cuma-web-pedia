@@ -51,7 +51,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$entityBody->firstnames,
 			$entityBody->lastnames,
 			$entityBody->email,
-			$entityBody->password,
+			// $entityBody->password,
 			$entityBody->admin
 		);
 	}

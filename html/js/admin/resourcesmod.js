@@ -124,20 +124,20 @@
             // Extract user id from the id attribute of the clicked button
             const resourceId = this.id.split("_")[2];
 
-            deleteData("../../php/admin.php", { resourceId: resourceId }).then(
-                (response) => {
-                    console.log("delete response", response);
+            deleteData("https://proydweb.com/2024/cuma/php/admin.php", {
+                resourceId: resourceId,
+            }).then((response) => {
+                console.log("delete response", response);
 
-                    if (!response || response["error"] == true) {
-                        window.alert("Error al eliminar registro!");
-                        return;
-                    }
-
-                    // delete record tr element
-                    this.closest("tr").remove();
+                if (!response || response["error"] == true) {
+                    window.alert("Error al eliminar registro!");
                     return;
                 }
-            );
+
+                // delete record tr element
+                this.closest("tr").remove();
+                return;
+            });
         }
 
         function saveChanges() {
@@ -193,7 +193,10 @@
                 cell.innerHTML = params[cell.id];
             });
 
-            postData("../../php/admin.php", params).then((response) => {
+            postData(
+                "https://proydweb.com/2024/cuma/php/admin.php",
+                params
+            ).then((response) => {
                 console.log("update response", response);
                 if (!response || response["error"] == true) location.reload();
             });

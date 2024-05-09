@@ -65,7 +65,7 @@ if (!isset($_SESSION['loggedUserId'])) {
 					<br>
 					<textarea name="res_description" class="open-sans-regular" placeholder="Descripción" cols="30" rows="5" maxlength="100" required></textarea>
 					<br>
-					<textarea name="res_content" class="open-sans-regular" placeholder="Contenido" cols="30" rows="5" maxlength="100" required></textarea>
+					<textarea name="res_content" class="open-sans-regular" placeholder="Contenido" cols="30" rows="5" required></textarea>
 					<br>
 					<input name="res_url" class="open-sans-regular" placeholder="Url relacionada" type="url" maxlength="70" required>
 					<br>

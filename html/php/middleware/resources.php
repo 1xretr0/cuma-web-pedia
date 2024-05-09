@@ -10,6 +10,7 @@ function getHomeCarrouselData() {
 				$mySQLManager->CONCEPTS_IMG AS 'image',
 				'concept' AS 'type'
 			FROM $mySQLManager->CONCEPTS_TABLE f
+			ORDER BY $mySQLManager->CONCEPTS_NAME
 			LIMIT 5)
 			UNION ALL
 			(SELECT
@@ -18,6 +19,7 @@ function getHomeCarrouselData() {
 				$mySQLManager->RESOURCES_IMG AS 'image',
 				'resource' AS 'type'
 			FROM cm_recursos r
+			ORDER BY $mySQLManager->RESOURCES_TITLE
 			LIMIT 5)
 	";
 	$result = $mySQLManager->executeRawSelect($query, true);

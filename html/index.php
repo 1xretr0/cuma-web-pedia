@@ -88,12 +88,6 @@ session_start();
 							";
 					}
 					?>
-					<a href="./entry/?id=0&ty=resource">
-						<span>
-							<img id="item" class="item" src="img/305x205.png" />
-							<p class="open-sans-bold">¿Por qué no puedo dormir?</p>
-						</span>
-					</a>
 					<a href="./entry/?id=0&ty=concept">
 						<span>
 							<img id="item" class="item" src="img/305x205.png" />
@@ -104,11 +98,6 @@ session_start();
 						<span>
 							<img id="item" class="item" src="img/305x205.png" />
 							<p class="open-sans-bold">Estrés y salud</p>
-						</span>
-					</a>
-					<a href='#'>
-						<span>
-							<p class='open-sans-bold'>El sistema endocrino</p>
 						</span>
 					</a>
 				</div>
