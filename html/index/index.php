@@ -4,6 +4,7 @@ require_once('../php/middleware/areas.php');
 require_once('../php/middleware/events.php');
 require_once('../php/middleware/groups.php');
 require_once('../php/middleware/states.php');
+require_once('../php/middleware/concepts.php');
 session_start();
 // print_r($_SESSION);
 // print_r($_REQUEST);
@@ -155,116 +156,38 @@ session_start();
 				</div>
 				<h2 class="open-sans-bold">Entradas recientes <?= isset($_SESSION['admin']) ? "<button id='new_button'>Crear nuevo</button>" : "" ?></h2>
 				<table>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=concept">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-area">Area</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-group">Grupo</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Año</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-status">Estado</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=concept">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-area">Area</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-group">Grupo</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Año</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-status">Estado</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=concept">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-area">Area</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-group">Grupo</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Año</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-status">Estado</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=concept">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-area">Area</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-group">Grupo</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Año</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-status">Estado</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=concept">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion de la entrada</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-area">Area</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-group">Grupo</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Año</button>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-status">Estado</button>
-						</td>
-					</tr>
+					<?php
+					foreach (getAllConcepts() as $concept) {
+						$concept = (object) $concept;
+
+						$concept->nombre = mb_substr($concept->nombre, 0, 50) . '...';
+						$concept->descripcion = mb_substr($concept->descripcion, 0, 70) . '...';
+
+						echo "
+						<tr>
+							<td class='table-row-text'>
+								<a href='../entry/?id=$concept->id_uam&ty=concept'>
+									<div>
+										<h3 class='open-sans-regular'>$concept->nombre</h3>
+										<p class='open-sans-light'>$concept->descripcion</p>
+									</div>
+								</a>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-area'>$concept->nombre_area</button>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-group'>$concept->nombre_grupo</button>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-year'>$concept->year</button>
+							</td>
+							<td>
+								<button disabled class='table-row-btn-status'>$concept->nombre_estado</button>
+							</td>
+						</tr>";
+					}
+					?>
 					<tr>
 						<td class="table-row-text">
 							<a href="../entry/?id=0&ty=concept">
