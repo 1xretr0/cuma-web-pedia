@@ -169,6 +169,42 @@ session_start();
 				</div>
 				<h2 class="open-sans-bold">Recursos recientes <?= isset($_SESSION['admin']) ? "<button id='new_button'>Crear nuevo</button>" : "" ?></h2>
 				<table>
+					<?php
+					// print_r(getAllResourcesForView());
+					// die;
+					foreach (getAllResourcesForView() as $resource) {
+						// print_r($resource);
+						// die;
+						$resource = (object) $resource;
+
+						$resource->titulo_recurso = mb_substr($resource->titulo_recurso, 0, 50) . '...';
+						$resource->descripcion_recurso = mb_substr($resource->descripcion_recurso, 0, 70) . '...';
+
+						$conceptsJson = $resource->json ? json_decode($resource->json) : array();
+						// print_r($conceptsJson);
+						// die;
+						$conceptsTds = '';
+						foreach ($conceptsJson as $concept) {
+							$conceptsTds .=
+								"<button disabled class='table-row-btn-year'>$concept->conceptName</button>";
+						}
+						echo "
+						<tr>
+							<td class='table-row-text'>
+								<a href='../entry/?id=$resource->id_recurso&ty=resource'>
+									<div>
+										<h3 class='open-sans-regular'>$resource->titulo_recurso</h3>
+										<p class='open-sans-light'>$resource->descripcion_recurso</p>
+									</div>
+								</a>
+							</td>
+							<td>
+								$conceptsTds
+							</td>
+						</tr>
+					";
+					}
+					?>
 					<tr>
 						<td class="table-row-text">
 							<a href="../entry/?id=0&ty=resource">
@@ -181,65 +217,6 @@ session_start();
 						<td>
 							<button disabled class="table-row-btn-year">Fundamento 1</button>
 							<button disabled class="table-row-btn-year">Fundamento 2</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=resource">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion del recurso.</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Fundamento 1</button>
-							<button disabled class="table-row-btn-year">Fundamento 2</button>
-							<button disabled class="table-row-btn-year">Fundamento 3</button>
-							<button disabled class="table-row-btn-year">Fundamento 4</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=resource">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion del recurso.</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Fundamento 1</button>
-							<button disabled class="table-row-btn-year">Fundamento 2</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=resource">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion del recurso.</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Fundamento 1</button>
-							<button disabled class="table-row-btn-year">Fundamento 2</button>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-row-text">
-							<a href="../entry/?id=0&ty=resource">
-								<div>
-									<h3 class="open-sans-regular">Título</h3>
-									<p class="open-sans-light">Esta es una descripcion del recurso.</p>
-								</div>
-							</a>
-						</td>
-						<td>
-							<button disabled class="table-row-btn-year">Fundamento 1</button>
-							<button disabled class="table-row-btn-year">Fundamento 2</button>
-							<button disabled class="table-row-btn-year">Fundamento 3</button>
 						</td>
 					</tr>
 				</table>
