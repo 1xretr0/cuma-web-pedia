@@ -53,11 +53,11 @@ if (isset($_SESSION['loggedUserId'])) {
 						''
 					?>
 					<button class="open-sans-bold" type="submit">Enviar</button>
-					<div>
+					<!-- <div>
 						<p class="open-sans-regular" style="margin-top: 30px;">
 							Si aún no tienes cuenta, regístrate <a onclick="switchLoginFormSection('register-form', 'login-form')">aquí.</a>
 						</p>
-					</div>
+					</div> -->
 				</form>
 			</div>
 		</section>

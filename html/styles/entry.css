@@ -38,3 +38,8 @@ main {
 .details img {
 	width: 100%;
 }
+
+#accordion label:hover {
+	background: none !important;
+}
+
